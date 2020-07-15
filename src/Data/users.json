@@ -1,0 +1,23 @@
+{
+  "_id": "users",
+  "_rev": "31-3c99db219e81e2ca0df5d6cb219a2df1",
+  "users": {
+    "harrison@ibm.com3": {
+      "password": "REMOVED",
+      "friends": [],
+      "shoppinglist": {
+        "UUID21231": {
+          "item": "Cheese",
+          "quantity": "2g",
+          "notes": "marble",
+          "purchased_by": ""
+        }
+      }
+    },
+    "harrison@ibm.com4": {
+      "password": "REMOVED",
+      "friends": [],
+      "shoppinglist": {}
+    }
+  }
+}
