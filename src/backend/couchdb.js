@@ -1,5 +1,8 @@
 const Cloudant = require("@cloudant/cloudant");
 const bcrypt = require("bcrypt");
+const {
+  v4: uuidv4
+} = require('uuid');
 const serviceCredentials = require("./secrets.json").couchdb;
 
 const databaseInitCallback = function (err, cloudant, pong) {
@@ -29,11 +32,11 @@ const addUser = async function (email, password) {
   doc.users[email] = {
     password: bcrypt.hashSync(password, 1),
   };
-  doc.users[email].friends = []
-  doc.users[email].shoppinglist = {}
+  doc.users[email].friends = [];
+  doc.users[email].shoppinglist = {};
 
-  await db.insert(doc)
-  return 1
+  await db.insert(doc);
+  return 1;
 };
 
 const auth = async function (email, password) {
@@ -44,30 +47,37 @@ const auth = async function (email, password) {
 
 const addFriend = async function (email, friend) {
   let doc = await db.get("users");
-  doc.users[email].friends.push(friend)
+  doc.users[email].friends.push(friend);
 
-  await db.insert(doc)
-  return 1
-}
+  await db.insert(doc);
+  return 1;
+};
 
 const addShoppingItem = async function (email, item) {
   let doc = await db.get("users");
-  // doc.users[email].shoppinglist
+  doc.users[email].shoppinglist[uuidv4()] = item
 
-  await db.insert(doc)
-  return 1
-}
+  await db.insert(doc);
+  return 1;
+};
 
-
-const main = async function () {
+const main = (async function () {
   user = "harrison@ibm.com4";
 
-  await addUser(user, "bb")
-  await addFriend(user, "felix")
+  shoppingItem = {
+    "item": "Cheese",
+    "quantity": "2g",
+    "notes": "marble",
+    "purchased_by": ""
+  }
+
+  await addShoppingItem(user, shoppingItem)
+
+  // await addUser(user, "bb");
+  // await addFriend(user, "felix");
   // console.log(await auth(user, "aa"));
   // console.log(await auth(user, "bb"));
-
-}()
+})();
 
 // https://github.com/cloudant/nodejs-cloudant
 // https://github.com/cloudant/haengematte/blob/master/nodejs/crud.js
