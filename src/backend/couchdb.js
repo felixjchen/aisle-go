@@ -42,14 +42,30 @@ const auth = async function (email, password) {
   return bcrypt.compareSync(password, hash);
 };
 
+const addFriend = async function (email, friend) {
+  let doc = await db.get("users");
+  doc.users[email].friends.push(friend)
+
+  await db.insert(doc)
+  return 1
+}
+
+const addShoppingItem = async function (email, item) {
+  let doc = await db.get("users");
+  // doc.users[email].shoppinglist
+
+  await db.insert(doc)
+  return 1
+}
+
 
 const main = async function () {
   user = "harrison@ibm.com4";
 
   await addUser(user, "bb")
-
-  console.log(await auth(user, "aa"));
-  console.log(await auth(user, "bb"));
+  await addFriend(user, "felix")
+  // console.log(await auth(user, "aa"));
+  // console.log(await auth(user, "bb"));
 
 }()
 
