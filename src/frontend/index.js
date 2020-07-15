@@ -1,12 +1,12 @@
-const socket = io("https://redsweater.azurewebsites.net/");
+// const socket = io("https://redsweater.azurewebsites.net/");
+const socket = io("http://0.0.0.0");
 
 socket.on("connect", () => {
     // either with send()
     socket.send("Hello!");
 
     // or with emit() and custom event names
-    socket.emit(
-        "salutations",
+    socket.emit("salutations",
         "Hello!", {
             mr: "john",
         },

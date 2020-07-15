@@ -9,19 +9,7 @@ const databaseInitCallback = function (err, cloudant, pong) {
   if (err) {
     return console.log("Failed to initialize Cloudant: " + err.message);
   }
-  console.log(pong); // {"couchdb":"Welcome","version": ...
-  // Lists all the databases.
-  console.log("Databases: ");
-  cloudant.db
-    .list()
-    .then((body) => {
-      body.forEach((db) => {
-        console.log(db);
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  console.log(pong);
 };
 
 const cloudant = Cloudant(serviceCredentials, databaseInitCallback);
@@ -118,7 +106,7 @@ const main = (async function () {
 
   // console.log(await auth(user, "aa"));
   // console.log(await auth(user, "bb"));
-})();
+})
 
 // https://github.com/cloudant/nodejs-cloudant
 // https://github.com/cloudant/haengematte/blob/master/nodejs/crud.js
