@@ -24,40 +24,29 @@ const databaseInitCallback = function (err, cloudant, pong) {
 const cloudant = Cloudant(serviceCredentials, databaseInitCallback);
 const db = cloudant.db.use("redsweater");
 
-const addUser = function (email, password) {
-  let documentName = "users";
-  db.get(documentName, function (err, data) {
-    // Retrieve Doc
-    if (err) {
-      return console.log("Failed: " + err.message);
-    }
-    doc = data;
+const addUser = async function (email, password) {
+  let doc = await db.get("users");
+  doc.users[email] = {
+    password: bcrypt.hashSync(password, 1),
+  };
+  doc.users[email].friends = []
+  doc.users[email].shoppinglist = {}
 
-    //  Make change
-    doc["users"][email] = {
-      password: bcrypt.hashSync(password, 1),
-    };
-
-    // Write
-    db.insert(doc, function (err, data) {
-      if (err) {
-        return console.log("Failed: " + err.message);
-      }
-    });
-  });
+  await db.insert(doc)
+  return 1
 };
 
 const auth = async function (email, password) {
-  let documentName = "users";
-  let doc = await db.get(documentName);
-  hash = doc["users"][email]["password"];
+  let doc = await db.get("users");
+  hash = doc.users[email].password;
   return bcrypt.compareSync(password, hash);
 };
 
-const main = async function () {
-  user = "harrison@ibm.com";
 
-  // addUser("harrison@ibm.com", "bb")
+const main = async function () {
+  user = "harrison@ibm.com4";
+
+  await addUser(user, "bb")
 
   console.log(await auth(user, "aa"));
   console.log(await auth(user, "bb"));
