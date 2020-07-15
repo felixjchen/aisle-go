@@ -61,8 +61,16 @@ const addShoppingItem = async function (email, item) {
   return 1;
 };
 
+const updatePurchase = async function (email, itemID, by) {
+  let doc = await db.get("users");
+  doc.users[email]["shoppinglist"][itemID]["purchased_by"] = by
+
+  await db.insert(doc);
+  return 1;
+}
+
 const main = (async function () {
-  user = "harrison@ibm.com4";
+  email = "harrison@ibm.com4";
 
   shoppingItem = {
     "item": "Cheese",
@@ -71,7 +79,8 @@ const main = (async function () {
     "purchased_by": ""
   }
 
-  await addShoppingItem(user, shoppingItem)
+  // await addShoppingItem(user, shoppingItem)
+  await updatePurchase(email, "e95eb31a-a6c0-45ea-8310-a8d56b5d411e", "felix")
 
   // await addUser(user, "bb");
   // await addFriend(user, "felix");
