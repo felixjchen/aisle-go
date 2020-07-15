@@ -1,5 +1,5 @@
 const Cloudant = require("@cloudant/cloudant");
-const couchDBServiceCredentials = require("./secrets.json").couchdb;
+const serviceCredentials = require("./secrets.json").couchdb;
 
 const databaseInitCallback = function (err, cloudant, pong) {
     if (err) {
@@ -19,8 +19,7 @@ const databaseInitCallback = function (err, cloudant, pong) {
         });
 }
 
-const cloudant = Cloudant(couchDBServiceCredentials, databaseInitCallback);
-console.log(1111)
+const cloudant = Cloudant(serviceCredentials, databaseInitCallback);
 
 // https://github.com/cloudant/nodejs-cloudant
 // https://github.com/cloudant/haengematte/blob/master/nodejs/crud.js
