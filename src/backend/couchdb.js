@@ -61,6 +61,28 @@ const addShoppingItem = async function (email, item) {
   return 1;
 };
 
+const getFriends = async function (email) {
+  let doc = await db.get("users");
+  friends = doc.users[email].friends
+  return friends;
+};
+
+const getFriendsProfiles = async function (email) {
+  friends = await getFriends(email)
+  let doc = await db.get("users");
+  let users = doc.users
+
+
+  Object.keys(users)
+    .filter(key => !friends.includes(key))
+    .forEach(key => delete users[key]);
+
+  Object.keys(users)
+    .forEach(key => delete users[key].password)
+
+  return users
+}
+
 const updatePurchase = async function (email, itemID, by) {
   let doc = await db.get("users");
   doc.users[email]["shoppinglist"][itemID]["purchased_by"] = by
@@ -70,7 +92,19 @@ const updatePurchase = async function (email, itemID, by) {
 }
 
 const main = (async function () {
-  email = "harrison@ibm.com4";
+  felix = "felix.chen@ibm.com"
+  harrison = "harrison.ossias@ibm.com";
+  diya = "nadiya.stakhyra@ibm.com"
+
+  // await addUser(felix, "a");
+  // await addUser(harrison, "b");
+  // await addUser(diya, "c");
+
+  // await addFriend(felix, harrison);
+  // await addFriend(felix, diya);
+
+  r = await getFriendsProfiles(felix)
+  console.log(r)
 
   shoppingItem = {
     "item": "Cheese",
@@ -80,10 +114,8 @@ const main = (async function () {
   }
 
   // await addShoppingItem(user, shoppingItem)
-  await updatePurchase(email, "e95eb31a-a6c0-45ea-8310-a8d56b5d411e", "felix")
+  // await updatePurchase(email, "e95eb31a-a6c0-45ea-8310-a8d56b5d411e", "felix")
 
-  // await addUser(user, "bb");
-  // await addFriend(user, "felix");
   // console.log(await auth(user, "aa"));
   // console.log(await auth(user, "bb"));
 })();
