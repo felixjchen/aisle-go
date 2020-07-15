@@ -3,15 +3,9 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
 
-// app.get('/', function (req, res) {
-//   res.sendFile(__dirname + '/index.html');
-// });
-
-// io.on('connection', function (socket) {
-//   socket.on('chat message', function (msg) {
-//     io.emit('chat message', msg);
-//   });
-// });
+app.get('/', function (req, res) {
+  res.send('hello redsweater sockets');
+});
 
 
 io.on("connect", (socket) => {
@@ -38,3 +32,5 @@ io.on("connect", (socket) => {
 http.listen(port, function () {
   console.log('listening on *:' + port);
 });
+
+// https://github.com/socketio/chat-example
