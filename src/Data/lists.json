@@ -1,0 +1,13 @@
+{
+    "_id": "lists",
+    "_rev": "***database will create this***",
+    "users": {
+      "felix.chen@ibm.com": {
+        "list": {
+            "1": {"item": "milk", "Amount": "2L"},
+            "2": {"item": "Chicken Breast", "Ammount": "2 Lbs"}
+        }
+      }
+    }
+  }
+  

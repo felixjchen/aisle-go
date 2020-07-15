@@ -1,0 +1,15 @@
+{
+    "_id": "users",
+    "_rev": "4-d6805ef65f51120b1cb682545fd39e22",
+    "users": {
+      "felix.chen@ibm.com": {
+        "name": "Felix",
+        "password": "@felix99"
+      }
+      "harrison.ossias@ibm.com": {
+          "name": "Harrison",
+          "password": "@harrison99"
+      }
+    }
+  }
+  
