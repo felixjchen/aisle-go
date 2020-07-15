@@ -54,12 +54,13 @@ const auth = async function (email, password) {
   return bcrypt.compareSync(password, hash);
 };
 
-
 const main = async function () {
-  user = "felixchen1998@gmail.com";
+  user = "harrison@ibm.com";
+
+  // addUser("harrison@ibm.com", "bb")
 
   console.log(await auth(user, "aa"));
-  console.log(await auth(user, "aaa"));
+  console.log(await auth(user, "bb"));
 
 }()
 
