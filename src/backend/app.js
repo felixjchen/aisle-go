@@ -4,7 +4,7 @@ const io = require('socket.io')(http);
 const port = process.env.PORT || 80;
 
 app.get('/', function (req, res) {
-  res.send('hello redsweater sockets');
+  res.send('redsweater backend');
 });
 
 
