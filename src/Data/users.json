@@ -14,8 +14,63 @@
         }
       }
     },
-    "harrison@ibm.com4": {
+    "felix.chen@ibm.com": {
+      "name": "Felix Chen",
       "password": "REMOVED",
+      "friends": [],
+      "shoppinglist": {}
+    },
+    "harrison.ossias@ibm.com": {
+      "name": "Harrison Ossias",
+      "password": "@harrison99",
+      "friends": [],
+      "shoppinglist": {}
+    },
+    "nadiya.stakhyra@ibm.com": {
+      "name": "Nadiya Stakhyra",
+      "password": "@nadiya99",
+      "friends": [],
+      "shoppinglist": {}
+    },
+    "juwon.adeola@ibm.com": {
+      "name": "Juwon Adeola",
+      "password": "@juwon99",
+      "friends": [],
+      "shoppinglist": {}
+    },
+    "dhruvp11@ibm.com": {
+      "name": "Dhruv Patel",
+      "password": "@dhruv99",
+      "friends": [],
+      "shoppinglist": {}
+    },
+    "fredrogers@gmail.com": {
+      "name": "Mister Rogers",
+      "password": "r3d$weater",
+      "friends": [],
+      "shoppinglist": {}
+    },
+    "arvindk@us.ibm.com": {
+      "name": "Arvind Krishna",
+      "password": "CE0ofIBM!",
+      "friends": [],
+      "shoppinglist": {}
+    },
+    "elonmusk@tesla.com": {
+      "name": "Elon Musk",
+      "password": "@spaceX99",
+      "friends": [],
+      "shoppinglist": {}
+    },
+    "johnsmith@ibm.com": {
+      "name": "John Smith",
+      "password": "@john99",
+      "friends": [],
+      "shoppinglist": {}
+    },
+    "billybob@ibm.com": {
+      "name": "Billy Bob",
+      "password": "@billy99",
       "friends": [],
       "shoppinglist": {}
     }
