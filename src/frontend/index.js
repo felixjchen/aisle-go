@@ -1,3 +1,11 @@
+$(function () {
+    // console.log("ready!");
+    $('.tab').click(function () {
+        console.log($(this).attr("tab"))
+        alert("Handler for .click() called.");
+    })
+});
+
 // const socket = io("https://redsweater.azurewebsites.net/");
 const socket = io("http://0.0.0.0");
 

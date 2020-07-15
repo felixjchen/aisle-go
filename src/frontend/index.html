@@ -1,11 +1,13 @@
 <head>
 	<title>Redsweater</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
-	<link href="https://unpkg.com/carbon-components/css/carbon-components.min.css" rel="stylesheet" />
-	<script src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+	<link href="https://unpkg.com/carbon-components/css/carbon-components.min.css"
+		rel="stylesheet" />
+	<script
+		src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
 	<script src="index.js"></script>
 	<link href="main.css" rel="stylesheet" />
 </head>
@@ -16,19 +18,27 @@
   LICENSE file in the root directory of this source tree.
 -->
 <header class="bx--header" role="banner" data-header>
-	<button id="hamburger" class="bx--header__menu-trigger bx--header__action" aria-label="Open menu" title="Open menu"
-		data-navigation-menu-panel-label-expand="Open menu" data-navigation-menu-panel-label-collapse="Close menu"
+	<button id="hamburger" class="bx--header__menu-trigger bx--header__action"
+		aria-label="Open menu" title="Open menu"
+		data-navigation-menu-panel-label-expand="Open menu"
+		data-navigation-menu-panel-label-collapse="Close menu"
 		data-navigation-menu-target="#navigation-menu-m6ibyfeacg">
-		<svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;"
-			xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="bx--navigation-menu-panel-collapse-icon"
+		<svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change:
+			transform;"
+			xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+			class="bx--navigation-menu-panel-collapse-icon"
 			width="20" height="20" viewBox="0 0 32 32">
-			<path d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4 14.6 16 8 22.6 9.4 24 16 17.4 22.6 24 24 22.6 17.4 16 24 9.4z">
+			<path d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4 14.6 16 8 22.6 9.4 24 16 17.4
+				22.6 24 24 22.6 17.4 16 24 9.4z">
 			</path>
 		</svg>
-		<svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;"
-			xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="bx--navigation-menu-panel-expand-icon"
+		<svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change:
+			transform;"
+			xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+			class="bx--navigation-menu-panel-expand-icon"
 			width="20" height="20" viewBox="0 0 20 20">
-			<path d="M2 14.8H18V16H2zM2 11.2H18V12.399999999999999H2zM2 7.6H18V8.799999999999999H2zM2 4H18V5.2H2z">
+			<path d="M2 14.8H18V16H2zM2 11.2H18V12.399999999999999H2zM2
+				7.6H18V8.799999999999999H2zM2 4H18V5.2H2z">
 			</path>
 		</svg>
 	</button>
@@ -48,89 +58,88 @@
 	<nav class="bx--header__nav" aria-label="Platform Name" data-header-nav>
 		<ul class="bx--header__menu-bar" aria-label="Platform Name">
 			<li>
-				<a class="bx--header__menu-item" href="javascript:void(0)" tabindex="0">
+				<a class="tab bx--header__menu-item" tab="profile">
 					Profile
 				</a>
 			</li>
 			<li>
-				<a class="bx--header__menu-item" href="javascript:void(0)" tabindex="0">
+				<a class="tab bx--header__menu-item" tab="profile">
 					Friends
 				</a>
 			</li>
 			<li>
-				<a class="bx--header__menu-item" href="javascript:void(0)" tabindex="0">
-					Transaction Ledger
+				<a class="tab bx--header__menu-item" tab="profile">
+					Ledger
 				</a>
 			</li>
 		</ul>
 	</nav>
 	<p id="account">felix.chen@ibm.com</p>
 </header>
-
-<div class="bx--navigation" id="navigation-menu-m6ibyfeacg" hidden data-navigation-menu>
+<div class="bx--navigation" id="navigation-menu-m6ibyfeacg" hidden=""
+	data-navigation-menu="">
 	<div class="bx--navigation-section">
 		<ul class="bx--navigation-items">
 			<li class="bx--navigation-item bx--navigation-item--icon">
-				<a class="bx--navigation-link" href="javascript:void(0)">
+				<a class="bx--navigation-link">
 					<div class="bx--navigation-icon">
-						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-							aria-hidden="true">
-							<path
-								d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12 12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86 23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14 14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59 10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59 10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
+						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0
+							0 32 32" aria-hidden="true">
+							<path d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12 12 0 0
+								1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86 23l1.73-1a11.9
+								11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14 14 0 0 0 7 5.33l1.24
+								1.53a12 12 0 0 1 3.58-2.1zM5.59 10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2
+								.35A11.9 11.9 0 0 1 5.59 10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0
+								0-28z"></path>
 						</svg>
 					</div>
 					Profile
 				</a>
 			</li>
 			<li class="bx--navigation-item bx--navigation-item--icon">
-				<a class="bx--navigation-link" href="javascript:void(0)">
+				<a class="bx--navigation-link">
 					<div class="bx--navigation-icon">
-						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-							aria-hidden="true">
-							<path
-								d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12 12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86 23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14 14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59 10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59 10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
+						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0
+							0 32 32" aria-hidden="true">
+							<path d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12 12 0 0
+								1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86 23l1.73-1a11.9
+								11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14 14 0 0 0 7 5.33l1.24
+								1.53a12 12 0 0 1 3.58-2.1zM5.59 10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2
+								.35A11.9 11.9 0 0 1 5.59 10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0
+								0-28z"></path>
 						</svg>
 					</div>
 					Friends
 				</a>
 			</li>
-		</ul>
-	</div>
-	<div class="bx--navigation-section">
-		<ul class="bx--navigation-items">
-			<li class="bx--navigation-item bx--navigation-item--active bx--navigation-item--icon">
-				<a class="bx--navigation-link" href="javascript:void(0)">
+			<li class="bx--navigation-item bx--navigation-item--icon">
+				<a class="bx--navigation-link">
 					<div class="bx--navigation-icon">
-						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-							aria-hidden="true">
-							<path
-								d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12 12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86 23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14 14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59 10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59 10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
+						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0
+							0 32 32" aria-hidden="true">
+							<path d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12 12 0 0
+								1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86 23l1.73-1a11.9
+								11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14 14 0 0 0 7 5.33l1.24
+								1.53a12 12 0 0 1 3.58-2.1zM5.59 10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2
+								.35A11.9 11.9 0 0 1 5.59 10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0
+								0-28z"></path>
 						</svg>
 					</div>
-					Transaction Ledger
+					Ledger
 				</a>
 			</li>
 		</ul>
 	</div>
 </div>
 
-<!--
-	Copyright IBM Corp. 2016, 2018
-  
-	This source code is licensed under the Apache-2.0 license found in the
-	LICENSE file in the root directory of this source tree.
-  -->
-
 <div class="bx--content bx--grid">
 
-	<div class="bx--row">
-		<h3>My Shopping List</h3>
-	</div>
-	<div class="bx--row">
+	<div id="profile" class="tabcontent bx--row">
 		<div class="wishlist bx--col-sm-4 bx--col-lg-4 bx--col-padding">
 			<section class="bx--structured-list">
 				<div class="bx--structured-list-thead">
-					<div class="bx--structured-list-row bx--structured-list-row--header-row">
+					<div class="bx--structured-list-row
+						bx--structured-list-row--header-row">
 						<div class="bx--structured-list-th">Item</div>
 						<div class="bx--structured-list-th">Quantity</div>
 						<div class="bx--structured-list-th">Notes</div>
@@ -139,7 +148,8 @@
 				</div>
 				<div class="bx--structured-list-tbody">
 					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td bx--structured-list-content--nowrap">
+						<div class="bx--structured-list-td
+							bx--structured-list-content--nowrap">
 							Cheese
 						</div>
 						<div class="bx--structured-list-td">
@@ -153,7 +163,8 @@
 						</div>
 					</div>
 					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td bx--structured-list-content--nowrap">
+						<div class="bx--structured-list-td
+							bx--structured-list-content--nowrap">
 							Milk
 						</div>
 						<div class="bx--structured-list-td">
@@ -168,15 +179,14 @@
 			</section>
 		</div>
 	</div>
-	<div class="bx--row">
-		<h3>My Friends' Shopping Lists</h3>
-	</div>
-	<div class="bx--row">
+
+	<div id="friends" class="tabcontent bx--row">
 		<div class="wishlist bx--col-sm-4 bx--col-lg-4 bx--col-padding">
 			<h4>Diya</h4>
 			<section class="bx--structured-list">
 				<div class="bx--structured-list-thead">
-					<div class="bx--structured-list-row bx--structured-list-row--header-row">
+					<div class="bx--structured-list-row
+						bx--structured-list-row--header-row">
 						<div class="bx--structured-list-th">Item</div>
 						<div class="bx--structured-list-th">Quantity</div>
 						<div class="bx--structured-list-th">Notes</div>
@@ -185,7 +195,8 @@
 				</div>
 				<div class="bx--structured-list-tbody">
 					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td bx--structured-list-content--nowrap">
+						<div class="bx--structured-list-td
+							bx--structured-list-content--nowrap">
 							Cheese
 						</div>
 						<div class="bx--structured-list-td">
@@ -196,14 +207,16 @@
 						</div>
 						<div class="bx--structured-list-td">
 							<div class="bx--form-item bx--checkbox-wrapper">
-								<input id="bx--checkbox-new" class="bx--checkbox" type="checkbox" value="new"
+								<input id="bx--checkbox-new" class="bx--checkbox" type="checkbox"
+									value="new"
 									name="checkbox" checked />
 								<label for="bx--checkbox-new" class="bx--checkbox-label"></label>
 							</div>
 						</div>
 					</div>
 					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td bx--structured-list-content--nowrap">
+						<div class="bx--structured-list-td
+							bx--structured-list-content--nowrap">
 							Milk
 						</div>
 						<div class="bx--structured-list-td">
@@ -212,7 +225,8 @@
 						<div class="bx--structured-list-td"></div>
 						<div class="bx--structured-list-td">
 							<div class="bx--form-item bx--checkbox-wrapper">
-								<input id="bx--checkbox-new2" class="bx--checkbox" type="checkbox" value="new"
+								<input id="bx--checkbox-new2" class="bx--checkbox" type="checkbox"
+									value="new"
 									name="checkbox" checked />
 								<label for="bx--checkbox-new2" class="bx--checkbox-label"></label>
 							</div>
@@ -225,7 +239,8 @@
 			<h4>Dhruv</h4>
 			<section class="bx--structured-list">
 				<div class="bx--structured-list-thead">
-					<div class="bx--structured-list-row bx--structured-list-row--header-row">
+					<div class="bx--structured-list-row
+						bx--structured-list-row--header-row">
 						<div class="bx--structured-list-th">Item</div>
 						<div class="bx--structured-list-th">Quantity</div>
 						<div class="bx--structured-list-th">Notes</div>
@@ -234,7 +249,8 @@
 				</div>
 				<div class="bx--structured-list-tbody">
 					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td bx--structured-list-content--nowrap">
+						<div class="bx--structured-list-td
+							bx--structured-list-content--nowrap">
 							Cheese
 						</div>
 						<div class="bx--structured-list-td">
@@ -245,14 +261,16 @@
 						</div>
 						<div class="bx--structured-list-td">
 							<div class="bx--form-item bx--checkbox-wrapper">
-								<input id="bx--checkbox-new4" class="bx--checkbox" type="checkbox" value="new"
+								<input id="bx--checkbox-new4" class="bx--checkbox" type="checkbox"
+									value="new"
 									name="checkbox" checked />
 								<label for="bx--checkbox-new4" class="bx--checkbox-label"></label>
 							</div>
 						</div>
 					</div>
 					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td bx--structured-list-content--nowrap">
+						<div class="bx--structured-list-td
+							bx--structured-list-content--nowrap">
 							Milk
 						</div>
 						<div class="bx--structured-list-td">
@@ -261,7 +279,8 @@
 						<div class="bx--structured-list-td"></div>
 						<div class="bx--structured-list-td">
 							<div class="bx--form-item bx--checkbox-wrapper">
-								<input id="bx--checkbox-new3" class="bx--checkbox" type="checkbox" value="new"
+								<input id="bx--checkbox-new3" class="bx--checkbox" type="checkbox"
+									value="new"
 									name="checkbox" checked />
 								<label for="bx--checkbox-new3" class="bx--checkbox-label"></label>
 							</div>
@@ -274,7 +293,8 @@
 			<h4>Harrison</h4>
 			<section class="bx--structured-list">
 				<div class="bx--structured-list-thead">
-					<div class="bx--structured-list-row bx--structured-list-row--header-row">
+					<div class="bx--structured-list-row
+						bx--structured-list-row--header-row">
 						<div class="bx--structured-list-th">Item</div>
 						<div class="bx--structured-list-th">Quantity</div>
 						<div class="bx--structured-list-th">Notes</div>
@@ -283,7 +303,8 @@
 				</div>
 				<div class="bx--structured-list-tbody">
 					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td bx--structured-list-content--nowrap">
+						<div class="bx--structured-list-td
+							bx--structured-list-content--nowrap">
 							Cheese
 						</div>
 						<div class="bx--structured-list-td">
@@ -294,7 +315,8 @@
 						</div>
 						<div class="bx--structured-list-td">
 							<div class="bx--form-item bx--checkbox-wrapper">
-								<input id="bx--checkbox-new6" class="bx--checkbox" type="checkbox" value="new"
+								<input id="bx--checkbox-new6" class="bx--checkbox" type="checkbox"
+									value="new"
 									name="checkbox" checked />
 								<label for="bx--checkbox-new6" class="bx--checkbox-label"></label>
 							</div>
@@ -307,7 +329,8 @@
 			<h4>Juwon</h4>
 			<section class="bx--structured-list">
 				<div class="bx--structured-list-thead">
-					<div class="bx--structured-list-row bx--structured-list-row--header-row">
+					<div class="bx--structured-list-row
+						bx--structured-list-row--header-row">
 						<div class="bx--structured-list-th">Item</div>
 						<div class="bx--structured-list-th">Quantity</div>
 						<div class="bx--structured-list-th">Notes</div>
@@ -316,7 +339,8 @@
 				</div>
 				<div class="bx--structured-list-tbody">
 					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td bx--structured-list-content--nowrap">
+						<div class="bx--structured-list-td
+							bx--structured-list-content--nowrap">
 							Cheese
 						</div>
 						<div class="bx--structured-list-td">
@@ -327,14 +351,16 @@
 						</div>
 						<div class="bx--structured-list-td">
 							<div class="bx--form-item bx--checkbox-wrapper">
-								<input id="bx--checkbox-new7" class="bx--checkbox" type="checkbox" value="new"
+								<input id="bx--checkbox-new7" class="bx--checkbox" type="checkbox"
+									value="new"
 									name="checkbox" checked />
 								<label for="bx--checkbox-new7" class="bx--checkbox-label"></label>
 							</div>
 						</div>
 					</div>
 					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td bx--structured-list-content--nowrap">
+						<div class="bx--structured-list-td
+							bx--structured-list-content--nowrap">
 							Milk
 						</div>
 						<div class="bx--structured-list-td">
@@ -343,7 +369,8 @@
 						<div class="bx--structured-list-td"></div>
 						<div class="bx--structured-list-td">
 							<div class="bx--form-item bx--checkbox-wrapper">
-								<input id="bx--checkbox-new8" class="bx--checkbox" type="checkbox" value="new"
+								<input id="bx--checkbox-new8" class="bx--checkbox" type="checkbox"
+									value="new"
 									name="checkbox" checked />
 								<label for="bx--checkbox-new8" class="bx--checkbox-label"></label>
 							</div>
