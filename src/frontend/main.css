@@ -1,3 +1,15 @@
-.wishlist {
+@media (min-width: 66rem) {
+    #hamburger {
+        display: none;
+    }
+}
+
+#account {
     /* background-color: #f4f4f4; */
+    color: rgb(198, 198, 198);
+    margin-left: auto;
+    order: 2;
+    font-size: 14px;
+    padding-right: 14px;
+    /* display: block; */
 }
