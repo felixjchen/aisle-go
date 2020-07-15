@@ -10,12 +10,7 @@ app.get('/', function (req, res) {
 
 io.on("connect", (socket) => {
   // either with send()
-  socket.send("Hello!");
-
-  // or with emit() and custom event names
-  socket.emit("greetings", "Hey!", {
-    ms: "jane"
-  }, Buffer.from([4, 3, 3, 1]));
+  socket.send("Hello from websocket backend!");
 
   // handle the event sent with socket.send()
   socket.on("message", (data) => {
