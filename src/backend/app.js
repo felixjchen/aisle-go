@@ -2,6 +2,15 @@ const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 80;
+const {
+  addUser,
+  auth,
+  addFriend,
+  addShoppingItem,
+  getFriends,
+  getFriendsProfiles,
+  updatePurchase,
+} = require("./couchdb")
 
 app.get('/', function (req, res) {
   res.send('redsweater backend');

@@ -7,6 +7,8 @@ $(function () {
   $("#navigation-menu-m6ibyfeacg .tab").click(function () {
     $("#hamburger").click();
   });
+
+  $("lo");
 });
 
 // const socket = io("https://redsweater.azurewebsites.net/");

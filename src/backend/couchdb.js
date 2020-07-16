@@ -1,8 +1,6 @@
 const Cloudant = require("@cloudant/cloudant");
 const bcrypt = require("bcrypt");
-const {
-  v4: uuidv4
-} = require('uuid');
+const { v4: uuidv4 } = require("uuid");
 const serviceCredentials = require("./secrets.json").couchdb;
 
 const databaseInitCallback = function (err, cloudant, pong) {
@@ -43,7 +41,7 @@ const addFriend = async function (email, friend) {
 
 const addShoppingItem = async function (email, item) {
   let doc = await db.get("users");
-  doc.users[email].shoppinglist[uuidv4()] = item
+  doc.users[email].shoppinglist[uuidv4()] = item;
 
   await db.insert(doc);
   return 1;
@@ -51,38 +49,36 @@ const addShoppingItem = async function (email, item) {
 
 const getFriends = async function (email) {
   let doc = await db.get("users");
-  friends = doc.users[email].friends
+  friends = doc.users[email].friends;
   return friends;
 };
 
 const getFriendsProfiles = async function (email) {
-  friends = await getFriends(email)
+  friends = await getFriends(email);
   let doc = await db.get("users");
-  let users = doc.users
-
-
-  Object.keys(users)
-    .filter(key => !friends.includes(key))
-    .forEach(key => delete users[key]);
+  let users = doc.users;
 
   Object.keys(users)
-    .forEach(key => delete users[key].password)
+    .filter((key) => !friends.includes(key))
+    .forEach((key) => delete users[key]);
 
-  return users
-}
+  Object.keys(users).forEach((key) => delete users[key].password);
+
+  return users;
+};
 
 const updatePurchase = async function (email, itemID, by) {
   let doc = await db.get("users");
-  doc.users[email]["shoppinglist"][itemID]["purchased_by"] = by
+  doc.users[email]["shoppinglist"][itemID]["purchased_by"] = by;
 
   await db.insert(doc);
   return 1;
-}
+};
 
-const main = (async function () {
-  felix = "felix.chen@ibm.com"
+const main = async function () {
+  felix = "felix.chen@ibm.com";
   harrison = "harrison.ossias@ibm.com";
-  diya = "nadiya.stakhyra@ibm.com"
+  diya = "nadiya.stakhyra@ibm.com";
 
   // await addUser(felix, "a");
   // await addUser(harrison, "b");
@@ -91,22 +87,32 @@ const main = (async function () {
   // await addFriend(felix, harrison);
   // await addFriend(felix, diya);
 
-  r = await getFriendsProfiles(felix)
-  console.log(r)
+  r = await getFriendsProfiles(felix);
+  console.log(r);
 
   shoppingItem = {
-    "item": "Cheese",
-    "quantity": "2g",
-    "notes": "marble",
-    "purchased_by": ""
-  }
+    item: "Cheese",
+    quantity: "2g",
+    notes: "marble",
+    purchased_by: "",
+  };
 
   // await addShoppingItem(user, shoppingItem)
   // await updatePurchase(email, "e95eb31a-a6c0-45ea-8310-a8d56b5d411e", "felix")
 
   // console.log(await auth(user, "aa"));
   // console.log(await auth(user, "bb"));
-})
+};
+
+module.exports = {
+  addUser,
+  auth,
+  addFriend,
+  addShoppingItem,
+  getFriends,
+  getFriendsProfiles,
+  updatePurchase,
+};
 
 // https://github.com/cloudant/nodejs-cloudant
 // https://github.com/cloudant/haengematte/blob/master/nodejs/crud.js
