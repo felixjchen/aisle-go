@@ -94,7 +94,6 @@ $(function () {
             createClaimedForFriend(friends)
         })
     })
-
 });
 
 const createMyShoppingList = (items) => {
@@ -223,7 +222,9 @@ const createClaimedForFriend = (friends) => {
                         <div class="bx--form-item bx--checkbox-wrapper">
                             <input id="bx--checkbox-${itemID}" class="bx--checkbox" type="checkbox"
                                 value="new"
-                                name="checkbox" />
+                                name="checkbox" 
+                                purchaseitemid="${itemID}"
+                                purchasefriendemail="${friendEmail}"/>
                             <label for="bx--checkbox-${itemID}" class="bx--checkbox-label"></label>
                         </div>
                     </div>
@@ -251,6 +252,7 @@ const createClaimedForFriend = (friends) => {
             </div>`
 
         $("#claimedForFriendList").append(domString)
+        setListeners()
     }
 }
 
@@ -329,4 +331,15 @@ const setListeners = () => {
         // Remove this element from my friend shopping list dom
         $(this).closest(".bx--structured-list-row").remove()
     })
+
+    // WHY IS THIS FIRING THREE TIMES???
+    $(".bx--checkbox").change(function () {
+        if (this.checked) {
+            let itemID = $(this).attr("purchaseitemid")
+            let friendEmail = $(this).attr("purchasefriendemail")
+            console.log(itemID)
+            socket.emit("purchaseForFriendAttempt", email, friendEmail, itemID, function (response) {})
+        }
+    })
+
 }

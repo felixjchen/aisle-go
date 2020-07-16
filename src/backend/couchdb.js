@@ -111,7 +111,7 @@ const addForFriend = async (email, friend, itemID) => {
 
 const updatePurchase = async function (email, itemID, by) {
   let doc = await db.get("users");
-  doc.users[email]["shoppinglist"][itemID]["purchased_by"] = by;
+  doc.users[email]["shoppinglist"][itemID]["purchase_by"] = by;
   await db.insert(doc);
   return true;
 };

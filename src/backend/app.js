@@ -41,10 +41,6 @@ io.on("connect", (socket) => {
     emailToSocket[email] = socket.id
     socketToEmail[socket.id] = email
     emailToFriends[email] = user.friends
-    console.log(emailToSocket)
-    console.log(socketToEmail)
-    console.log(emailToFriends)
-    console.log(getFriendSockets(socket.id))
     callback(r)
   })
 
@@ -107,6 +103,26 @@ io.on("connect", (socket) => {
       user: await getUser(email),
       friends: await getFriendsProfiles(email)
     }
+    callback(r)
+  })
+
+
+  socket.on("purchaseForFriendAttempt", async (email, friendEmail, itemID, callback) => {
+    console.log(email, friendEmail, itemID)
+    let r = {
+      status: await updatePurchase(friendEmail, itemID, email),
+      user: await getUser(email),
+      friends: await getFriendsProfiles(email)
+    }
+
+    // tell friend rerender
+    let friendSocket = emailToSocket[friendEmail]
+    let f = {
+      user: await getUser(friendEmail),
+      friends: await getFriendsProfiles(friendEmail)
+    }
+    io.to(friendSocket).emit('render', f);
+
     callback(r)
   })
 });
