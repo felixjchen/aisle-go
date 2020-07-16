@@ -66,14 +66,14 @@ $(function () {
 });
 
 const createMyShoppingList = (items) => {
-    // INIT create my list from DB
+    // INIT create my shopping list from DB
     let domString = ``
 
     for (var itemID in items) {
         item = items[itemID]
 
         domString = domString + `
-        <div class="bx--structured-list-row" itemid = "${itemID}">
+        <div class="bx--structured-list-row" rowitemid = "${itemID}">
             <div class="bx--structured-list-td
                 bx--structured-list-content--nowrap">
                 ${item.name}
@@ -107,7 +107,7 @@ const createFriendShoppinglists = (friends) => {
 
             if (item.in_list == "") {
                 itemString = itemString + `
-                <div class="bx--structured-list-row" itemid = "${itemID}">
+                <div class="bx--structured-list-row" rowitemid = "${itemID}">
                     <div class="bx--structured-list-td
                         bx--structured-list-content--nowrap">
                         ${item.name}
@@ -224,7 +224,7 @@ const createAddedForFriend = (friends) => {
 const addItemToMyShoppingList = (itemID, item) => {
     // Add item to my shopping list
     domString = `
-    <div class="bx--structured-list-row" itemid = "${itemID}">
+    <div class="bx--structured-list-row" rowitemid = "${itemID}">
         <div class="bx--structured-list-td
             bx--structured-list-content--nowrap">
             ${item.name}
@@ -245,7 +245,7 @@ const addItemToMyShoppingList = (itemID, item) => {
 
 const addToFriendShoppingList = (friendEmail, itemID, item) => {
     // Friend added a new item, sync up
-    itemString = `<div class="bx--structured-list-row" itemid = "${itemID}">
+    itemString = `<div class="bx--structured-list-row" rowitemid = "${itemID}">
                 <div class="bx--structured-list-td
                     bx--structured-list-content--nowrap">
                     ${item.name}
