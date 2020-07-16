@@ -9,7 +9,7 @@ class crypting {
 }
 
 module.exports = (string ) => 
-    function (string) {return new crypting( arg1,arg2,arg3 )}
+    function (string) {return new crypting( string)}
 
 
 
