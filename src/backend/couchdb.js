@@ -87,10 +87,16 @@ const getFriendsProfiles = async function (email) {
   return users;
 };
 
+const addForFriend = async (email, friend, itemID) => {
+  let doc = await db.get("users");
+  doc.users[friend]["shoppinglist"][itemID]["in_list"] = email;
+  await db.insert(doc);
+  return 1;
+}
+
 const updatePurchase = async function (email, itemID, by) {
   let doc = await db.get("users");
   doc.users[email]["shoppinglist"][itemID]["purchased_by"] = by;
-
   await db.insert(doc);
   return 1;
 };
@@ -101,10 +107,11 @@ const main = async function () {
   diya = "nadiya.stakhyra@ibm.com";
 
   // await addUser(felix, "a");
-  // await addUser(diya, "b");
+  await addUser(harrison, "c");
 
-  // await addFriend(felix, harrison);
-  await addFriend(felix, diya);
+  await addFriend(felix, harrison);
+  await addFriend(diya, harrison);
+  // await addFriend(felix, diya);
 
 
   // await addShoppingItem(user, shoppingItem)
@@ -121,6 +128,7 @@ module.exports = {
   addShoppingItem,
   getFriends,
   getFriendsProfiles,
+  addForFriend,
   updatePurchase,
 };
 

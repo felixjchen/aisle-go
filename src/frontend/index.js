@@ -4,21 +4,7 @@ var email = "felix.chen@ibm.com"
 var user = {}
 var friends = {}
 
-socket.on("connect", () => {
-    // either with send()
-    // socket.send("Hello!");
-
-});
-
-// handle the event sent with socket.send()
-// socket.on("message", (data) => {
-//     console.log(data);
-// });
-
-// // handle the event sent with socket.emit()
-// socket.on("greetings", (elem1, elem2, elem3) => {
-//     console.log(elem1, elem2, elem3);
-// });
+socket.on("connect", () => {});
 
 $(function () {
     $(".tab").click(function () {
@@ -65,8 +51,8 @@ $(function () {
         socket.emit("addItemAttempt", email, item, function (response) {
             addItemToShoppingList(item)
         })
-
     })
+
 });
 
 const createMyShoppingList = (items) => {
@@ -129,31 +115,35 @@ const createFriendShoppinglists = (friends) => {
         for (var itemID in items) {
             item = items[itemID]
 
-            itemString = itemString + `<div class="bx--structured-list-row">
-                <div class="bx--structured-list-td
-                    bx--structured-list-content--nowrap">
-                    ${item.name}
-                </div>
-                <div class="bx--structured-list-td">
-                    ${item.quantity}
-                </div>
-                <div class="bx--structured-list-td">
-                    ${item.notes}
-                </div>
-                <div class="bx--structured-list-td">
-                    <button
-                        class="bx--btn bx--btn--secondary bx--btn--icon-only
-                        bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom
-                        bx--tooltip--align-center bx--btn--sm">
-                        <span class="bx--assistive-text">Add</span>
-                        <svg focusable="false" preserveAspectRatio="xMidYMid meet"
-                            style="will-change: transform;" xmlns="http://www.w3.org/2000/svg"
-                            class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16"
-                            aria-hidden="true"><path d="M9 7L9 3 7 3 7 7 3 7 3 9 7 9 7 13 9 13 9
-                                9 13 9 13 7z"></path></svg>
-                    </button>
-                </div>
-            </div>`
+            if (item.in_list == "") {
+                itemString = itemString + `<div class="bx--structured-list-row">
+                    <div class="bx--structured-list-td
+                        bx--structured-list-content--nowrap">
+                        ${item.name}
+                    </div>
+                    <div class="bx--structured-list-td">
+                        ${item.quantity}
+                    </div>
+                    <div class="bx--structured-list-td">
+                        ${item.notes}
+                    </div>
+                    <div class="bx--structured-list-td">
+                        <button
+                            class="bx--btn bx--btn--secondary bx--btn--icon-only
+                            bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom
+                            bx--tooltip--align-center bx--btn--sm addForFriend"
+                            itemID= ${itemID}
+                            friendEmail = ${friendEmail}>
+                            <span class="bx--assistive-text">Add</span>
+                            <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                                style="will-change: transform;" xmlns="http://www.w3.org/2000/svg"
+                                class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16"
+                                aria-hidden="true"><path d="M9 7L9 3 7 3 7 7 3 7 3 9 7 9 7 13 9 13 9
+                                    9 13 9 13 7z"></path></svg>
+                        </button>
+                    </div>
+                </div>`
+            }
         }
 
         let domString = `
@@ -177,5 +167,15 @@ const createFriendShoppinglists = (friends) => {
 
         $("#friendLists").append(domString)
 
+
+        $(".addForFriend").click(function () {
+            let friendEmail = $(this).attr("friendEmail")
+            let itemID = $(this).attr("itemID")
+            console.log(friendEmail, itemID)
+
+            socket.emit("addForFriendAttempt", email, friendEmail, itemID, function (response) {
+                addItemToShoppingList(item)
+            })
+        })
     }
 }

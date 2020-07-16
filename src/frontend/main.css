@@ -35,7 +35,7 @@ img {
 /* Desktop size */
 @media only screen and (min-width: 1056px) {
     #bothPanes {
-        min-height: 460px;
+        min-height: 500px;
         margin: 40px auto;
         margin-top: 0;
         width: 980px;

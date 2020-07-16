@@ -9,8 +9,13 @@ const {
   addShoppingItem,
   getFriends,
   getFriendsProfiles,
+  addForFriend,
   updatePurchase,
 } = require("./couchdb")
+
+var sockets = {
+
+}
 
 app.get('/', function (req, res) {
   res.send('redsweater backend');
@@ -33,10 +38,11 @@ io.on("connect", (socket) => {
     callback(await addShoppingItem(email, item))
   })
 
-  // handle the event sent with socket.send()
-  socket.on("message", (data) => {
-    console.log(data);
-  });
+
+  socket.on("addForFriendAttempt", async (email, friendEmail, itemID, callback) => {
+    callback(await addForFriend(email, friendEmail, itemID))
+  })
+
 
 });
 
