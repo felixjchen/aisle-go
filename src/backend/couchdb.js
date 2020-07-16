@@ -106,14 +106,17 @@ const addForFriend = async (email, friend, itemID) => {
   let doc = await db.get("users");
   doc.users[friend]["shoppinglist"][itemID]["in_list"] = email;
   await db.insert(doc);
-  return true;
+  return doc.users[friend]["shoppinglist"][itemID];
 }
 
 const updatePurchase = async function (email, itemID, by) {
   let doc = await db.get("users");
+  if (doc.users[email]["shoppinglist"][itemID]["purchase_by"] == by) {
+    return false
+  }
   doc.users[email]["shoppinglist"][itemID]["purchase_by"] = by;
   await db.insert(doc);
-  return true;
+  return doc.users[email]["shoppinglist"][itemID];
 };
 
 const main = async function () {
@@ -126,6 +129,7 @@ const main = async function () {
   // await addUser(felix, "a");
   // await addUser(harrison, "c");
   // await addUser(juwon, "d");
+  // await addUser(dhruv, "e");
 
   // await addFriend(felix, harrison);
   // await addFriend(diya, harrison);

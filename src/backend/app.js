@@ -54,6 +54,11 @@ io.on("connect", (socket) => {
     let friendSockets = getFriendSockets(socket.id)
     let myEmail = socketToEmail[socket.id]
     friendSockets.forEach(friendSocket => {
+      //  Update feed
+      let msg = `${email} has added ${item.name} to their cart`
+      io.to(friendSocket).emit('updateFeed', msg);
+
+      // Add item to friends list
       io.to(friendSocket).emit('friendNewItem', myEmail, itemID, item);
     })
 
@@ -72,10 +77,20 @@ io.on("connect", (socket) => {
       user: await getUser(email),
       friends: await getFriendsProfiles(email)
     }
+
+
     // Only if add friend is succesful
     if (r.status) {
       emailToFriends[email].push(friendEmail)
       emailToFriends[friendEmail].push(email)
+
+
+      //  Tell all my friends feeds
+      let friendSockets = getFriendSockets(socket.id)
+      friendSockets.forEach(friendSocket => {
+        let msg = `${email} and ${friendEmail} are now friends`
+        io.to(friendSocket).emit('updateFeed', msg);
+      })
 
       // new friend rerender
       let friendSocket = emailToSocket[friendEmail]
@@ -92,17 +107,22 @@ io.on("connect", (socket) => {
 
 
   socket.on("claimForFriendAttempt", async (email, friendEmail, itemID, callback) => {
-    //  Tell all my friends new item
-    let friendSockets = getFriendSockets(socket.id)
-    friendSockets.forEach(friendSocket => {
-      io.to(friendSocket).emit('friendClaimed', email, itemID)
-    })
 
     let r = {
-      status: await addForFriend(email, friendEmail, itemID),
+      item: await addForFriend(email, friendEmail, itemID),
       user: await getUser(email),
       friends: await getFriendsProfiles(email)
     }
+
+    //  Tell all my friends, that email claimed friendEmail's item
+    let friendSockets = getFriendSockets(socket.id)
+    friendSockets.forEach(friendSocket => {
+      let msg = `${email} is going to get ${r.item.name} for ${friendEmail}`
+      io.to(friendSocket).emit('updateFeed', msg);
+
+      io.to(friendSocket).emit('friendClaimed', email, itemID)
+    })
+
     callback(r)
   })
 
@@ -110,18 +130,29 @@ io.on("connect", (socket) => {
   socket.on("purchaseForFriendAttempt", async (email, friendEmail, itemID, callback) => {
     console.log(email, friendEmail, itemID)
     let r = {
-      status: await updatePurchase(friendEmail, itemID, email)
+      item: await updatePurchase(friendEmail, itemID, email)
     }
 
-    // tell friend rerender
-    let friendSocket = emailToSocket[friendEmail]
-    let f = {
-      user: await getUser(friendEmail),
-      friends: await getFriendsProfiles(friendEmail)
-    }
-    io.to(friendSocket).emit('render', f);
+    if (r.item != false) {
 
-    callback(r)
+      // tell friend rerender
+      let friendSocket = emailToSocket[friendEmail]
+      let f = {
+        user: await getUser(friendEmail),
+        friends: await getFriendsProfiles(friendEmail)
+      }
+      io.to(friendSocket).emit('render', f);
+
+      //  Tell all my friends feeds
+      let friendSockets = getFriendSockets(socket.id)
+      friendSockets.forEach(friendSocket => {
+        let msg = `${email} has purchased ${r.item.name} for ${friendEmail}`
+        io.to(friendSocket).emit('updateFeed', msg);
+      })
+
+      callback(r)
+    }
+
   })
 });
 
@@ -138,6 +169,7 @@ const getFriendSockets = (mySocketID) => {
 
   return friendSockets
 }
+
 
 http.listen(port, function () {
   console.log('listening on *:' + port);

@@ -7,8 +7,8 @@
 
 #bothPanes .bx--label {
     font-size: 16px;
-    color: white;
 }
+
 
 #bothPanes .bx--form-item {
     padding-bottom: 22px;
@@ -59,6 +59,11 @@ img {
         height: 100vh;
         /* background: #ececec; */
         max-width: 100vw;
+    }
+
+
+    #bothPanes .bx--label {
+        color: white;
     }
 }
 
@@ -144,4 +149,11 @@ img {
     vertical-align: middle;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+}
+
+#feed .bx--structured-list-td {
+    vertical-align: middle;
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+    font-size: 20px;
 }

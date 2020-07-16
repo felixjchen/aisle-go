@@ -30,6 +30,18 @@ socket.on("render", (response) => {
     createClaimedForFriend(friends)
 })
 
+socket.on("updateFeed", (string) => {
+    let itemString = `
+        <div class="bx--structured-list-row">
+            <div class="bx--structured-list-td
+                bx--structured-list-content--nowrap">
+                ${string}
+            </div>
+        </div>
+        `
+    $("#feedList").prepend(itemString)
+})
+
 $(function () {
     $(".tab").click(function () {
         // Tabs
@@ -326,6 +338,7 @@ const setListeners = () => {
         let itemID = $(this).attr("itemID")
 
         socket.emit("claimForFriendAttempt", email, friendEmail, itemID, function (response) {
+            console.log(user, friends)
             user = response.user
             friends = response.friends
             createMyShoppingList(user.shoppinglist)
@@ -337,8 +350,7 @@ const setListeners = () => {
         $(this).closest(".bx--structured-list-row").remove()
     })
 
-    // WHY IS THIS FIRING THREE TIMES???
-    $(".bx--checkbox").change(function () {
+    $(".bx--checkbox").unbind().click(function () {
         if (this.checked) {
             let itemID = $(this).attr("purchaseitemid")
             let friendEmail = $(this).attr("purchasefriendemail")
