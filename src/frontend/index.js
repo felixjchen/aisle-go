@@ -53,7 +53,7 @@ $(function () {
         }
 
         socket.emit("addItemAttempt", email, item, function (response) {
-            addItemToShoppingList(item)
+            addItemToShoppingList(response.itemID, item)
         })
     })
 
@@ -88,9 +88,9 @@ const createMyShoppingList = (items) => {
     $("#myShoppingList").append(domString)
 }
 
-const addItemToShoppingList = (item) => {
+const addItemToShoppingList = (itemID, item) => {
     domString = `
-    <div class="bx--structured-list-row">
+    <div class="bx--structured-list-row" itemID = "${itemID}">
         <div class="bx--structured-list-td
             bx--structured-list-content--nowrap">
             ${item.name}
@@ -273,7 +273,7 @@ const setListeners = () => {
         let friendEmail = $(this).attr("friendEmail")
         let itemID = $(this).attr("itemID")
         socket.emit("addForFriendAttempt", email, friendEmail, itemID, function (response) {
-            addItemToShoppingList(item)
+            console.log("add for friend!")
         })
     })
 }

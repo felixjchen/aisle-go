@@ -60,7 +60,12 @@ io.on("connect", (socket) => {
       io.to(friendSocket).emit('friendAddItem', myEmail, itemID, item);
     })
 
-    callback(await addShoppingItem(email, itemID, item))
+    let r = {
+      status: await addShoppingItem(email, itemID, item),
+      itemID
+    }
+
+    callback(r)
   })
 
 
