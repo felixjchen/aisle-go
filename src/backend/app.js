@@ -30,7 +30,13 @@ io.on("connect", (socket) => {
   socket.send("Hello from websocket backend!");
 
   socket.on("loginAttempt", async (email, password, callback) => {
-    r = await auth(email, password)
+    let r = await auth(email, password)
+
+    // Fail
+    if (!r.status) {
+      callback(r)
+    }
+
     emailToSocket[email] = socket.id
     socketToEmail[socket.id] = email
     emailToFriends[email] = user.friends
@@ -43,9 +49,16 @@ io.on("connect", (socket) => {
 
   socket.on("addItemAttempt", async (email, item, callback) => {
 
+    let itemID = uuidv4()
     item['in_list'] = ""
     item['purchase_by'] = ""
-    itemID = uuidv4()
+
+    //  Tell all my friends new item
+    let friendSockets = getFriendSockets(socket.id)
+    let myEmail = socketToEmail[socket.id]
+    friendSockets.forEach(friendSocket => {
+      io.to(friendSocket).emit('friendAddItem', myEmail, itemID, item);
+    })
 
     callback(await addShoppingItem(email, itemID, item))
   })

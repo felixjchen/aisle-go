@@ -6,7 +6,7 @@ var friends = {}
 
 socket.on("connect", () => {});
 socket.on("friendAddItem", (friendEmail, itemID, item) => {
-    console.log(friendEmail, itemID, item)
+    addToFriendList(friendEmail, itemID, item)
 })
 
 $(function () {
@@ -66,7 +66,7 @@ const createMyShoppingList = (items) => {
         item = items[itemID]
 
         domString = domString + `
-        <div class="bx--structured-list-row">
+        <div class="bx--structured-list-row" itemID = "${itemID}">
             <div class="bx--structured-list-td
                 bx--structured-list-content--nowrap">
                 ${item.name}
@@ -120,7 +120,8 @@ const createFriendShoppinglists = (friends) => {
             item = items[itemID]
 
             if (item.in_list == "") {
-                itemString = itemString + `<div class="bx--structured-list-row">
+                itemString = itemString + `
+                <div class="bx--structured-list-row" itemID = "${itemID}">
                     <div class="bx--structured-list-td
                         bx--structured-list-content--nowrap">
                         ${item.name}
@@ -163,25 +164,49 @@ const createFriendShoppinglists = (friends) => {
                         <div class="bx--structured-list-th">Add to my List</div>
                     </div>
                 </div>
-                <div class="bx--structured-list-tbody">
+                <div class="bx--structured-list-tbody" friendList="${friendEmail}">
                 ${itemString}
                 </div>
             </section>
         </div>`
 
         $("#friendLists").append(domString)
-
-
-        $(".addForFriend").click(function () {
-            let friendEmail = $(this).attr("friendEmail")
-            let itemID = $(this).attr("itemID")
-            console.log(friendEmail, itemID)
-
-            socket.emit("addForFriendAttempt", email, friendEmail, itemID, function (response) {
-                addItemToShoppingList(item)
-            })
-        })
+        setListeners()
     }
+}
+
+const addToFriendList = (friendEmail, itemID, item) => {
+    itemString = `<div class="bx--structured-list-row" itemID = "${itemID}">
+                <div class="bx--structured-list-td
+                    bx--structured-list-content--nowrap">
+                    ${item.name}
+                </div>
+                <div class="bx--structured-list-td">
+                    ${item.quantity}
+                </div>
+                <div class="bx--structured-list-td">
+                    ${item.notes}
+                </div>
+                <div class="bx--structured-list-td">
+                    <button
+                        class="bx--btn bx--btn--secondary bx--btn--icon-only
+                        bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom
+                        bx--tooltip--align-center bx--btn--sm addForFriend"
+                        itemID= ${itemID}
+                        friendEmail = ${friendEmail}>
+                        <span class="bx--assistive-text">Add</span>
+                        <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                            style="will-change: transform;" xmlns="http://www.w3.org/2000/svg"
+                            class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16"
+                            aria-hidden="true"><path d="M9 7L9 3 7 3 7 7 3 7 3 9 7 9 7 13 9 13 9
+                                9 13 9 13 7z"></path></svg>
+                    </button>
+                </div>
+            </div>`
+
+
+    $(`div[friendList="${friendEmail}"]`).append(itemString)
+    setListeners()
 }
 
 const createAddForFriend = (friends) => {
@@ -196,7 +221,7 @@ const createAddForFriend = (friends) => {
 
             if (item.in_list == email) {
                 itemString = itemString + `
-                <div class="bx--structured-list-row">
+                <div class="bx--structured-list-row" itemID = "${itemID}">
                     <div class="bx--structured-list-td
                         bx--structured-list-content--nowrap">
                         ${item.name}
@@ -241,4 +266,14 @@ const createAddForFriend = (friends) => {
             $("#addForFriendList").append(domString)
         }
     }
+}
+
+const setListeners = () => {
+    $(".addForFriend").click(function () {
+        let friendEmail = $(this).attr("friendEmail")
+        let itemID = $(this).attr("itemID")
+        socket.emit("addForFriendAttempt", email, friendEmail, itemID, function (response) {
+            addItemToShoppingList(item)
+        })
+    })
 }
