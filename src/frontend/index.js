@@ -5,6 +5,9 @@ var user = {}
 var friends = {}
 
 socket.on("connect", () => {});
+socket.on("friendAddItem", (friendEmail, itemID, item) => {
+    console.log(friendEmail, itemID, item)
+})
 
 $(function () {
     $(".tab").click(function () {

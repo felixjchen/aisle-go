@@ -1,8 +1,5 @@
 const Cloudant = require("@cloudant/cloudant");
 const bcrypt = require("bcrypt");
-const {
-  v4: uuidv4
-} = require("uuid");
 const serviceCredentials = require("./secrets.json").couchdb;
 
 const databaseInitCallback = function (err, cloudant, pong) {
@@ -59,9 +56,9 @@ const addFriend = async function (email, friend) {
   return 1;
 };
 
-const addShoppingItem = async function (email, item) {
+const addShoppingItem = async function (email, itemID, item) {
   let doc = await db.get("users");
-  doc.users[email].shoppinglist[uuidv4()] = item;
+  doc.users[email].shoppinglist[itemID] = item;
 
   await db.insert(doc);
   return 1;

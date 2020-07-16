@@ -3,6 +3,9 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 80;
 const {
+  v4: uuidv4
+} = require("uuid");
+const {
   addUser,
   auth,
   addFriend,
@@ -13,9 +16,9 @@ const {
   updatePurchase,
 } = require("./couchdb")
 
-var sockets = {
-
-}
+var socketToEmail = {}
+var emailToSocket = {}
+var emailToFriends = {}
 
 app.get('/', function (req, res) {
   res.send('redsweater backend');
@@ -27,25 +30,45 @@ io.on("connect", (socket) => {
   socket.send("Hello from websocket backend!");
 
   socket.on("loginAttempt", async (email, password, callback) => {
-    callback(await auth(email, password))
+    r = await auth(email, password)
+    emailToSocket[email] = socket.id
+    socketToEmail[socket.id] = email
+    emailToFriends[email] = user.friends
+    console.log(emailToSocket)
+    console.log(socketToEmail)
+    console.log(emailToFriends)
+    console.log(getFriendSockets(socket.id))
+    callback(r)
   })
 
   socket.on("addItemAttempt", async (email, item, callback) => {
 
     item['in_list'] = ""
     item['purchase_by'] = ""
+    itemID = uuidv4()
 
-    callback(await addShoppingItem(email, item))
+    callback(await addShoppingItem(email, itemID, item))
   })
 
 
   socket.on("addForFriendAttempt", async (email, friendEmail, itemID, callback) => {
     callback(await addForFriend(email, friendEmail, itemID))
   })
-
-
 });
 
+const getFriendSockets = (mySocketID) => {
+  let myEmail = socketToEmail[mySocketID]
+  let friendEmails = emailToFriends[myEmail]
+  let friendSockets = []
+
+  friendEmails.forEach(friendEmail => {
+    if (friendEmail in emailToSocket) {
+      friendSockets.push(emailToSocket[friendEmail])
+    }
+  });
+
+  return friendSockets
+}
 
 http.listen(port, function () {
   console.log('listening on *:' + port);
