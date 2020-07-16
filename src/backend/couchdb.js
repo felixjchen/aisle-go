@@ -1,6 +1,8 @@
 const Cloudant = require("@cloudant/cloudant");
 const bcrypt = require("bcrypt");
-const { v4: uuidv4 } = require("uuid");
+const {
+  v4: uuidv4
+} = require("uuid");
 const serviceCredentials = require("./secrets.json").couchdb;
 
 const databaseInitCallback = function (err, cloudant, pong) {
@@ -15,6 +17,7 @@ const db = cloudant.db.use("redsweater");
 
 const addUser = async function (email, password) {
   let doc = await db.get("users");
+  email = email.toLowerCase()
   doc.users[email] = {
     password: bcrypt.hashSync(password, 1),
   };
@@ -27,6 +30,11 @@ const addUser = async function (email, password) {
 
 const auth = async function (email, password) {
   let doc = await db.get("users");
+
+  if (!(email in doc.users)) {
+    return "User not in DB"
+  }
+
   hash = doc.users[email].password;
   return bcrypt.compareSync(password, hash);
 };
