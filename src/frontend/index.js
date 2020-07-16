@@ -31,11 +31,19 @@ socket.on("render", (response) => {
 })
 
 socket.on("updateFeed", (string) => {
+
+    let str = new Date().toUTCString();
+    let res = str.slice(0, 16);
+
     let itemString = `
         <div class="bx--structured-list-row">
             <div class="bx--structured-list-td
                 bx--structured-list-content--nowrap">
-                ${string}
+                ${string} 
+            </div>
+
+            <div class="bx--structured-list-td">
+                ${res}
             </div>
         </div>
         `
