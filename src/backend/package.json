@@ -6,6 +6,7 @@
   "dependencies": {
     "@cloudant/cloudant": "^4.2.4",
     "bcrypt": "^5.0.0",
+    "crypto-js": "^4.0.0",
     "express": "^4.17.1",
     "socket.io": "^2.3.0",
     "uuid": "^8.2.0"
