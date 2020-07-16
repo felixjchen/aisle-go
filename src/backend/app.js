@@ -25,6 +25,12 @@ io.on("connect", (socket) => {
     callback(await auth(email, password))
   })
 
+  socket.on("addItemAttempt", async (email, item, callback) => {
+    item['in_list'] = ""
+    item['purchase_by'] = ""
+    callback(await addShoppingItem(email, item))
+  })
+
   // handle the event sent with socket.send()
   socket.on("message", (data) => {
     console.log(data);

@@ -57,13 +57,21 @@
 		<nav class="bx--header__nav" aria-label="Platform Name" data-header-nav>
 			<ul class="bx--header__menu-bar" aria-label="Platform Name">
 				<li>
-					<a class="tab bx--header__menu-item" tab="profile">
-						Profile
+					<a class="tab bx--header__menu-item" tab="mylist">
+						My List
+						<!-- userprofile/list shoppingcart /shoppingbag-->
 					</a>
 				</li>
 				<li>
 					<a class="tab bx--header__menu-item" tab="friends">
 						Friends
+						<!-- events -->
+					</a>
+				</li>
+				<li>
+					<a class="tab bx--header__menu-item" tab="friends">
+						Feed
+						<!-- query / shopping catalog-->
 					</a>
 				</li>
 				<li>
@@ -80,7 +88,7 @@
 		<div class="bx--navigation-section">
 			<ul class="bx--navigation-items">
 				<li class="bx--navigation-item bx--navigation-item--icon">
-					<a class="tab bx--navigation-link" tab="profile">
+					<a class="tab bx--navigation-link" tab="mylist">
 						<div class="bx--navigation-icon">
 							<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0
 								0 32 32" aria-hidden="true">
@@ -92,7 +100,7 @@
 									0-28z"></path>
 							</svg>
 						</div>
-						Profile
+						My List
 					</a>
 				</li>
 				<li class="bx--navigation-item bx--navigation-item--icon">
@@ -109,6 +117,22 @@
 							</svg>
 						</div>
 						Friends
+					</a>
+				</li>
+				<li class="bx--navigation-item bx--navigation-item--icon">
+					<a class="tab bx--navigation-link" tab="friends">
+						<div class="bx--navigation-icon">
+							<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0
+								0 32 32" aria-hidden="true">
+								<path d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12 12 0 0
+									1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86 23l1.73-1a11.9
+									11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14 14 0 0 0 7 5.33l1.24
+									1.53a12 12 0 0 1 3.58-2.1zM5.59 10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2
+									.35A11.9 11.9 0 0 1 5.59 10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0
+									0-28z"></path>
+							</svg>
+						</div>
+						Feed
 					</a>
 				</li>
 				<li class="bx--navigation-item bx--navigation-item--icon">
@@ -130,13 +154,77 @@
 			</ul>
 		</div>
 	</div>
+	<div data-modal id="modal-pyu0ribosn" class="bx--modal" role="dialog"
+		aria-modal="true" aria-labelledby="modal-pyu0ribosn-label"
+		aria-describedby="modal-pyu0ribosn-heading" tabindex="-1">
+		<div class="bx--modal-container">
+			<div class="bx--modal-header">
+				<p class="bx--modal-header__heading bx--type-beta"
+					id="modal-pyu0ribosn-heading">Add Item</p>
+				<button class="bx--modal-close" type="button" data-modal-close
+					aria-label="close modal">
+					<svg focusable="false" preserveAspectRatio="xMidYMid meet"
+						style="will-change: transform;" xmlns="http://www.w3.org/2000/svg"
+						class="bx--modal-close__icon" width="16" height="16" viewBox="0 0 16 16"
+						aria-hidden="true"><path d="M12 4.7L11.3 4 8 7.3 4.7 4 4 4.7 7.3 8 4 11.3
+							4.7 12 8 8.7 11.3 12 12 11.3 8.7 8z"></path></svg>
+				</button>
+			</div>
+
+			<div class="bx--modal-content bx--modal-content--with-form">
+				<div class="bx--form-item">
+					<label for="text-input-pyu0ribosn" class="bx--label">Item</label>
+					<input id="addItemName" type="text" class="bx--text-input"
+						data-modal-primary-focus>
+				</div>
+			</div>
+			<div class="bx--modal-content bx--modal-content--with-form">
+				<div class="bx--form-item">
+					<label for="text-input-pyu0ribosn" class="bx--label">Quantity</label>
+					<input id="addItemQuantity" type="text" class="bx--text-input"
+						data-modal-primary-focus>
+				</div>
+			</div>
+			<div class="bx--modal-content bx--modal-content--with-form">
+				<div class="bx--form-item">
+					<label for="text-input-pyu0ribosn" class="bx--label">Notes</label>
+					<input id="addItemNotes" type="text" class="bx--text-input"
+						data-modal-primary-focus>
+				</div>
+			</div>
+
+			<div class="bx--modal-content--overflow-indicator"></div>
+
+			<div class="bx--modal-footer">
+				<button class="bx--btn bx--btn--secondary" type="button" data-modal-close>Cancel</button>
+				<button id="addItem" class="bx--btn bx--btn--primary" type="button">Add</button>
+			</div>
+		</div>
+		<!-- Note: focusable span allows for focus wrap feature within Modals -->
+		<span tabindex="0"></span>
+	</div>
 
 	<div class="bx--content bx--grid">
 
-		<div id="profile" class="tabcontent">
+		<div id="mylist" class="tabcontent">
 			<div class="bx--row">
 				<h3>My Shopping List</h3>
 				<div class="bx--col-sm-4 bx--col-lg-12 bx--col-padding">
+
+					<button
+						id="addItemModal"
+						class="bx--btn bx--btn--primary bx--btn--field"
+						type="button"
+						data-modal-target="#modal-pyu0ribosn">
+						Add Item
+
+						<svg focusable="false" preserveAspectRatio="xMidYMid meet"
+							style="will-change: transform;" xmlns="http://www.w3.org/2000/svg"
+							class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16"
+							aria-hidden="true"><path d="M9 7L9 3 7 3 7 7 3 7 3 9 7 9 7 13 9 13 9 9 13
+								9 13 7z"></path></svg>
+					</button>
+
 					<section class="bx--structured-list">
 						<div class="bx--structured-list-thead">
 							<div class="bx--structured-list-row

@@ -1,5 +1,7 @@
 // const socket = io("https://redsweater.azurewebsites.net/");
 const socket = io("http://0.0.0.0");
+var email = "felix.chen@ibm.com"
+var user = {}
 
 socket.on("connect", () => {
     // either with send()
@@ -8,14 +10,14 @@ socket.on("connect", () => {
 });
 
 // handle the event sent with socket.send()
-socket.on("message", (data) => {
-    console.log(data);
-});
+// socket.on("message", (data) => {
+//     console.log(data);
+// });
 
-// handle the event sent with socket.emit()
-socket.on("greetings", (elem1, elem2, elem3) => {
-    console.log(elem1, elem2, elem3);
-});
+// // handle the event sent with socket.emit()
+// socket.on("greetings", (elem1, elem2, elem3) => {
+//     console.log(elem1, elem2, elem3);
+// });
 
 $(function () {
     $(".tab").click(function () {
@@ -28,20 +30,39 @@ $(function () {
     });
 
     $("#login").click(function () {
-        let email = $('#email').val().toLowerCase()
+        let signInEmail = $('#email').val().toLowerCase()
         let password = $('#password').val()
-        socket.emit("loginAttempt", email, password, function (response) {
+        socket.emit("loginAttempt", signInEmail, password, function (response) {
 
             // Want true for login success, false means some sort of error
-            console.log('Callback called with data:', response);
+            console.log('Callback for login with data:', response);
 
-            if (response) {
-                $("#account").text(email)
+            if (response.status) {
+                $("#account").text(signInEmail)
                 $("#loginPane").hide()
                 $("#application").show()
+                email = signInEmail
+                user = response.user
             }
-
         })
+    })
+
+    $("#addItem").click(function () {
+        let name = $("#addItemName").val()
+        let quantity = $("#addItemQuantity").val()
+        let notes = $("#addItemNotes").val()
+        let item = {
+            name,
+            quantity,
+            notes
+        }
+
+        socket.emit("addItemAttempt", email, item, function (response) {
+
+            // Want true for login success, false means some sort of error
+            console.log('Callback for login with data:', response);
+        })
+
     })
 
     // $("#loginPane").hide()

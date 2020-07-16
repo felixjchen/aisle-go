@@ -35,8 +35,16 @@ const auth = async function (email, password) {
     return "User not in DB"
   }
 
-  hash = doc.users[email].password;
-  return bcrypt.compareSync(password, hash);
+  user = doc.users[email]
+  hash = user.password;
+
+  delete user.password
+
+  r = {
+    status: bcrypt.compareSync(password, hash),
+    user
+  }
+  return r;
 };
 
 const addFriend = async function (email, friend) {
