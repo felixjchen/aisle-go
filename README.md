@@ -16,3 +16,8 @@ Technology
 - Netlify
 - Docker Hub, continous building with GitHub integration
 - Azure backend, continous delivery by webhook
+ 
+Future
+  - Integrate exisiting recommendation system, leverage newer AI techniques
+  - Blockchain
+  - Authorization
