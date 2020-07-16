@@ -1,5 +1,5 @@
-// const socket = io("https://redsweater.azurewebsites.net/");
-const socket = io("http://0.0.0.0");
+const socket = io("https://redsweater.azurewebsites.net/");
+// const socket = io("http://0.0.0.0");
 var email = "felix.chen@ibm.com"
 var user = {}
 var friends = {}
