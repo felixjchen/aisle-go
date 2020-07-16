@@ -7,6 +7,7 @@ const {
 } = require("uuid");
 const {
   addUser,
+  getUser,
   auth,
   addFriend,
   addShoppingItem,
@@ -71,12 +72,18 @@ io.on("connect", (socket) => {
 
   socket.on("claimForFriendAttempt", async (email, friendEmail, itemID, callback) => {
 
-    // If friend is online, notify them that you took there item
-    if (friendEmail in emailToSocket) {
-      let friendSocket = emailToSocket[friendEmail]
-      io.to(friendSocket).emit('friendAddedToTheirList', email, itemID);
+    //  Tell all my friends new item
+    let friendSockets = getFriendSockets(socket.id)
+    friendSockets.forEach(friendSocket => {
+      io.to(friendSocket).emit('friendClaimed', email, itemID)
+    })
+
+    let r = {
+      status: await addForFriend(email, friendEmail, itemID),
+      user: await getUser(email),
+      friends: await getFriendsProfiles(email)
     }
-    callback(await addForFriend(email, friendEmail, itemID))
+    callback(r)
   })
 });
 

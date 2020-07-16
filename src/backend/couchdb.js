@@ -25,6 +25,19 @@ const addUser = async function (email, password) {
   return 1;
 };
 
+const getUser = async function (email) {
+  let doc = await db.get("users");
+
+  if (!(email in doc.users)) {
+    return "User not in DB"
+  }
+
+  user = doc.users[email]
+  delete user.password
+
+  return user;
+}
+
 const auth = async function (email, password) {
   let doc = await db.get("users");
 
@@ -120,6 +133,7 @@ const main = async function () {
 
 module.exports = {
   addUser,
+  getUser,
   auth,
   addFriend,
   addShoppingItem,

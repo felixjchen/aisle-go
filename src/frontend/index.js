@@ -9,9 +9,16 @@ socket.on("friendNewItem", (friendEmail, itemID, item) => {
     addToFriendShoppingList(friendEmail, itemID, item)
 })
 
-socket.on("friendAddedToTheirList", (email, itemID) => {
-    // Friend added to their list, I can update my in list field
-    $("")
+socket.on("friendClaimed", (email, itemID) => {
+    console.log(itemID, "claimed")
+    // If this is my item, I update their claim
+    let myItem = $(`#myList div[rowitemid="${itemID}"] div`)[3]
+    if (myItem) {
+        myItem.innerHTML = email
+    } else {
+        // This is one of my friends items, delete
+        $(`#friendLists div[rowitemid="${itemID}"]`).remove()
+    }
 })
 
 $(function () {
@@ -45,7 +52,7 @@ $(function () {
 
                 createMyShoppingList(user.shoppinglist)
                 createFriendShoppinglists(friends)
-                claimForFriendAttempt(friends)
+                createClaimedForFriend(friends)
             } else {
                 alert("Bad login")
             }
@@ -97,10 +104,11 @@ const createMyShoppingList = (items) => {
             </div>
         </div>`
     }
-    $("#myShoppingList").append(domString)
+    $("#myShoppingList").empty().append(domString)
 }
 
 const createFriendShoppinglists = (friends) => {
+    $("#friendLists").empty()
     // INIT create friends shopping lists from DB
     for (var friendEmail in friends) {
 
@@ -168,6 +176,8 @@ const createFriendShoppinglists = (friends) => {
 
 const createClaimedForFriend = (friends) => {
     // INIT create added for friends shopping lists from DB
+
+    $("#claimedForFriendList").empty()
     for (var friendEmail in friends) {
 
         let itemString = ``
@@ -214,11 +224,12 @@ const createClaimedForFriend = (friends) => {
                             <div class="bx--structured-list-th">Purchased</div>
                         </div>
                     </div>
-                    <div class="bx--structured-list-tbody">
+                    <div class="bx--structured-list-tbody" claimsfor=${friendEmail}>
                         ${itemString}
                     </div>
                 </section>
             </div>`
+
         $("#claimedForFriendList").append(domString)
     }
 }
@@ -227,7 +238,7 @@ const createClaimedForFriend = (friends) => {
 const addItemToMyShoppingList = (itemID, item) => {
     // Add item to my shopping list
     domString = `
-    <div class="bx--structured-list-row" >
+    <div class="bx--structured-list-row" rowitemid = "${itemID}">
         <div class="bx--structured-list-td
             bx--structured-list-content--nowrap">
             ${item.name}
@@ -243,12 +254,12 @@ const addItemToMyShoppingList = (itemID, item) => {
         <div class="bx--structured-list-td">
         </div>
     </div>`
-    $("#myShoppingList").append(domString)
+    $("#myShoppingList").empty().append(domString)
 }
 
 const addToFriendShoppingList = (friendEmail, itemID, item) => {
     // Friend added a new item, sync up on friends tab
-    itemString = `<div class="bx--structured-list-row" >
+    itemString = `<div class="bx--structured-list-row" rowitemid = "${itemID}">
                 <div class="bx--structured-list-td
                     bx--structured-list-content--nowrap">
                     ${item.name}
@@ -277,7 +288,7 @@ const addToFriendShoppingList = (friendEmail, itemID, item) => {
             </div>`
 
 
-    $(`div[friendList="${friendEmail}"]`).append(itemString)
+    $(`div[friendList="${friendEmail}"]`).empty().append(itemString)
     setListeners()
 }
 
@@ -288,13 +299,14 @@ const setListeners = () => {
         let itemID = $(this).attr("itemID")
 
         socket.emit("claimForFriendAttempt", email, friendEmail, itemID, function (response) {
-            console.log("claimed for friend!", itemID)
-
+            user = response.user
+            friends = response.friends
+            createMyShoppingList(user.shoppinglist)
+            createFriendShoppinglists(friends)
+            createClaimedForFriend(friends)
         })
-
 
         // Remove this element from my friend shopping list dom
         $(this).closest(".bx--structured-list-row").remove()
-
     })
 }
