@@ -25,3 +25,78 @@
     padding-right: 14px;
     /* display: block; */
 }
+
+/* LOG IN */
+
+#bothPanes>div {
+    padding: 40px 30px;
+    padding-bottom: 24px;
+}
+
+#leftPane {
+    background: url(https://www.ibm.com/account/urx/images/ibmid_bkg.svg) center 90% / 100% no-repeat rgb(249, 249, 249);
+}
+
+#rightPane {
+    background: white;
+    max-width: 470px;
+}
+
+#bothPanes p {
+    padding: 0 0 1.5rem;
+}
+
+img {
+    height: auto;
+    width: 100%;
+}
+
+
+/* Desktop size */
+@media only screen and (min-width: 1056px) {
+    #bothPanes {
+        min-height: 600px;
+        margin: 40px auto;
+        width: 980px;
+    }
+
+    #login {
+        background: #ececec;
+    }
+}
+
+/* Mobile */
+@media only screen and (max-width: 1056px) and (min-width: 0px) {
+    #bothPanes {
+        min-height: 0;
+        margin: 0 auto;
+        padding: 0 10px 10px;
+    }
+
+    #leftPane {
+        background: rgb(249, 249, 249);
+    }
+
+    #login {
+        padding-top: 0;
+    }
+}
+
+@media only screen and (max-width: 1056px) and (min-width: 760px) {
+    #bothPanes {
+        min-height: 0;
+        width: 720px;
+    }
+}
+
+@media only screen and (max-width: 759px) and (min-width: 580px) {
+    #bothPanes {
+        width: 540px;
+    }
+}
+
+@media only screen and (max-width: 579px) and (min-width: 0px) {
+    #bothPanes>div {
+        min-width: 260px;
+    }
+}

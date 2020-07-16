@@ -11,12 +11,7 @@
 	<script src="index.js"></script>
 	<link href="main.css" rel="stylesheet" />
 </head>
-<!-- 
-  Copyright IBM Corp. 2016, 2018
 
-  This source code is licensed under the Apache-2.0 license found in the
-  LICENSE file in the root directory of this source tree.
--->
 <header class="bx--header" role="banner" data-header>
 	<button id="hamburger" class="bx--header__menu-trigger bx--header__action"
 		aria-label="Open menu" title="Open menu"
@@ -136,6 +131,7 @@
 
 	<div id="profile" class="tabcontent">
 		<div class="bx--row">
+			<h3>My Shopping List</h3>
 			<div class="bx--col-sm-4 bx--col-lg-12 bx--col-padding">
 				<section class="bx--structured-list">
 					<div class="bx--structured-list-thead">
@@ -183,6 +179,7 @@
 	</div>
 
 	<div id="friends" class="tabcontent">
+		<h3>My Friends' Shopping List</h3>
 		<div class="bx--row">
 			<div class="bx--col-sm-4 bx--col-lg-4 bx--col-padding">
 				<h4>Diya</h4>
@@ -388,10 +385,50 @@
 
 	<div id="ledger" class="tabcontent">
 		<div class="bx--row">
-			ledger content
+			<h3>Ledger Content</h3>
 			<div class="bx--col-sm-4 bx--col-lg-4 bx--col-padding">
 
 			</div>
 		</div>
 	</div>
+</div>
+
+<div id="login" class="bx--grid">
+	<div id="bothPanes" class="bx--row">
+		<div id="leftPane" class="bx--col-sm-4 bx--col-lg-6 bx--col-padding">
+			<h1> Redsweater</h1>
+
+		</div>
+
+		<div id="rightPane" class="bx--col-sm-4 bx--col-lg-6 bx--col-padding">
+
+			<div
+				class="bx--form-item bx--text-input-wrapper">
+				<label for="text-input-3" class="bx--label">Email</label>
+				<div class="bx--text-input__field-wrapper">
+					<input id="email" type="text"
+						class="bx--text-input">
+				</div>
+			</div>
+
+			<div
+				class="bx--form-item bx--text-input-wrapper">
+				<label for="text-input-3" class="bx--label">Password</label>
+				<div class="bx--text-input__field-wrapper">
+					<input id="password" type="text"
+						class="bx--text-input">
+				</div>
+			</div>
+
+
+			<button
+				class="bx--btn bx--btn--primary"
+				type="button">
+				Log In
+			</button>
+
+		</div>
+
+	</div>
+
 </div>
