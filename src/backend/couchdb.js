@@ -51,7 +51,9 @@ const auth = async function (email, password) {
 
 const addFriend = async function (email, friend) {
   let doc = await db.get("users");
+
   doc.users[email].friends.push(friend);
+  doc.users[friend].friends.push(email);
 
   await db.insert(doc);
   return 1;
@@ -104,15 +106,13 @@ const main = async function () {
   // await addFriend(felix, harrison);
   await addFriend(felix, diya);
 
-  r = await getFriendsProfiles(felix);
-  console.log(r)
 
   // await addShoppingItem(user, shoppingItem)
   // await updatePurchase(email, "e95eb31a-a6c0-45ea-8310-a8d56b5d411e", "felix")
 
   // console.log(await auth(user, "aa"));
   // console.log(await auth(user, "bb"));
-};
+}
 
 module.exports = {
   addUser,

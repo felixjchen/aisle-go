@@ -138,3 +138,9 @@ img {
 .bx--modal-content {
     margin-bottom: 1rem;
 }
+
+.bx--structured-list-td {
+    vertical-align: middle;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
