@@ -19,11 +19,11 @@ Aisle Go - as in “I’ll go shopping for you” - is a web app designed to bri
   - Authorization
   
 ### Credentials, user:pass
-felix.chen@ibm.com:a
-nadiya.stakhyra@ibm.com:b
-harrison.ossias@ibm.com:c
-juwon.adeola@ibm.com:d
-dhruvp11@ibm.com:e
+- felix.chen@ibm.com:a
+- nadiya.stakhyra@ibm.com:b
+- harrison.ossias@ibm.com:c
+- juwon.adeola@ibm.com:d
+-  dhruvp11@ibm.com:e
   
 Backend
 - https://redsweater.azurewebsites.net/
