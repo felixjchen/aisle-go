@@ -71,7 +71,6 @@ io.on("connect", (socket) => {
 
 
   socket.on("claimForFriendAttempt", async (email, friendEmail, itemID, callback) => {
-
     //  Tell all my friends new item
     let friendSockets = getFriendSockets(socket.id)
     friendSockets.forEach(friendSocket => {
