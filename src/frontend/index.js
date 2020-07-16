@@ -208,7 +208,7 @@ const createClaimedForFriend = (friends) => {
             if (item.in_list == email) {
                 let checked = ""
                 if (item.purchase_by == email) {
-                    checked = "checked"
+                    checked = "checked disabled"
                 }
 
                 itemString = itemString + `
@@ -343,6 +343,7 @@ const setListeners = () => {
             let itemID = $(this).attr("purchaseitemid")
             let friendEmail = $(this).attr("purchasefriendemail")
             socket.emit("purchaseForFriendAttempt", email, friendEmail, itemID, function (response) {})
+            $(this).prop("disabled", true)
         }
     })
 
