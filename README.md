@@ -9,7 +9,7 @@ Aisle Go - as in “I’ll go shopping for you” - is a web app designed to bri
 - IBM Carbon Components
 - Express.js, socket.io, bcrypt
 - Netlify
-- Docker Hub, continous building with GitHub integration
+- Docker Hub container, continous building with GitHub integration
 - Azure backend, continous delivery by webhook
  
 ## Future
@@ -17,7 +17,7 @@ Aisle Go - as in “I’ll go shopping for you” - is a web app designed to bri
   - Blockchain
   - Authorization
   
-### Credentials, user:pass
+## Credentials user:pass
 - felix.chen@ibm.com:a
 - nadiya.stakhyra@ibm.com:b
 - harrison.ossias@ibm.com:c
