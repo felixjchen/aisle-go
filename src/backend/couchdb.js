@@ -22,7 +22,7 @@ const addUser = async function (email, password) {
   doc.users[email].shoppinglist = {};
 
   await db.insert(doc);
-  return 1;
+  return true;
 };
 
 const getUser = async function (email) {
@@ -62,11 +62,16 @@ const auth = async function (email, password) {
 const addFriend = async function (email, friend) {
   let doc = await db.get("users");
 
+  // Dont add twice
+  if (doc.users[email].friends.includes(friend)) {
+    return false
+  }
+
   doc.users[email].friends.push(friend);
   doc.users[friend].friends.push(email);
 
   await db.insert(doc);
-  return 1;
+  return true;
 };
 
 const addShoppingItem = async function (email, itemID, item) {
@@ -74,7 +79,7 @@ const addShoppingItem = async function (email, itemID, item) {
   doc.users[email].shoppinglist[itemID] = item;
 
   await db.insert(doc);
-  return 1;
+  return true;
 };
 
 const getFriends = async function (email) {
@@ -101,26 +106,29 @@ const addForFriend = async (email, friend, itemID) => {
   let doc = await db.get("users");
   doc.users[friend]["shoppinglist"][itemID]["in_list"] = email;
   await db.insert(doc);
-  return 1;
+  return true;
 }
 
 const updatePurchase = async function (email, itemID, by) {
   let doc = await db.get("users");
   doc.users[email]["shoppinglist"][itemID]["purchased_by"] = by;
   await db.insert(doc);
-  return 1;
+  return true;
 };
 
 const main = async function () {
   felix = "felix.chen@ibm.com";
   harrison = "harrison.ossias@ibm.com";
   diya = "nadiya.stakhyra@ibm.com";
+  dhruv = "dhruvp11@ibm.com";
+  juwon = "juwon.adeola@ibm.com";
 
   // await addUser(felix, "a");
-  await addUser(harrison, "c");
+  // await addUser(harrison, "c");
+  // await addUser(juwon, "d");
 
-  await addFriend(felix, harrison);
-  await addFriend(diya, harrison);
+  // await addFriend(felix, harrison);
+  // await addFriend(diya, harrison);
   // await addFriend(felix, diya);
 
 

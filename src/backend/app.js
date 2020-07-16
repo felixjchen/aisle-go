@@ -69,6 +69,31 @@ io.on("connect", (socket) => {
     callback(r)
   })
 
+  socket.on("addFriendAttempt", async (email, friendEmail, callback) => {
+
+    let r = {
+      status: await addFriend(email, friendEmail),
+      user: await getUser(email),
+      friends: await getFriendsProfiles(email)
+    }
+    // Only if add friend is succesful
+    if (r.status) {
+      emailToFriends[email].push(friendEmail)
+      emailToFriends[friendEmail].push(email)
+
+      // new friend rerender
+      let friendSocket = emailToSocket[friendEmail]
+      let f = {
+        user: await getUser(friendEmail),
+        friends: await getFriendsProfiles(friendEmail)
+      }
+      io.to(friendSocket).emit('render', f);
+
+      // I render
+      callback(r)
+    }
+  })
+
 
   socket.on("claimForFriendAttempt", async (email, friendEmail, itemID, callback) => {
     //  Tell all my friends new item

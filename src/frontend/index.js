@@ -1,5 +1,5 @@
-const socket = io("https://redsweater.azurewebsites.net/");
-// const socket = io("http://0.0.0.0");
+// const socket = io("https://redsweater.azurewebsites.net/");
+const socket = io("http://0.0.0.0");
 var email = "felix.chen@ibm.com"
 var user = {}
 var friends = {}
@@ -19,6 +19,15 @@ socket.on("friendClaimed", (email, itemID) => {
         // This is one of my friends items, delete
         $(`#friendLists div[rowitemid="${itemID}"]`).remove()
     }
+})
+
+socket.on("render", (response) => {
+    console.log("I've been asked to render")
+    user = response.user
+    friends = response.friends
+    createMyShoppingList(user.shoppinglist)
+    createFriendShoppinglists(friends)
+    createClaimedForFriend(friends)
 })
 
 $(function () {
@@ -72,6 +81,17 @@ $(function () {
 
         socket.emit("addItemAttempt", email, item, function (response) {
             addItemToMyShoppingList(response.itemID, item)
+        })
+    })
+
+    $("#addFriend").click(function () {
+        let friendEmail = $("#addFriendEmail").val()
+        socket.emit("addFriendAttempt", email, friendEmail, function (response) {
+            user = response.user
+            friends = response.friends
+            createMyShoppingList(user.shoppinglist)
+            createFriendShoppinglists(friends)
+            createClaimedForFriend(friends)
         })
     })
 
@@ -160,7 +180,7 @@ const createFriendShoppinglists = (friends) => {
                         <div class="bx--structured-list-th">Item</div>
                         <div class="bx--structured-list-th">Quantity</div>
                         <div class="bx--structured-list-th">Notes</div>
-                        <div class="bx--structured-list-th">Claim</div>
+                        <div class="bx--structured-list-th">Add to My List</div>
                     </div>
                 </div>
                 <div class="bx--structured-list-tbody" friendList="${friendEmail}">
@@ -201,10 +221,10 @@ const createClaimedForFriend = (friends) => {
                     </div>
                     <div class="bx--structured-list-td">
                         <div class="bx--form-item bx--checkbox-wrapper">
-                            <input id="bx--checkbox-new2" class="bx--checkbox" type="checkbox"
+                            <input id="bx--checkbox-${itemID}" class="bx--checkbox" type="checkbox"
                                 value="new"
                                 name="checkbox" />
-                            <label for="bx--checkbox-new2" class="bx--checkbox-label"></label>
+                            <label for="bx--checkbox-${itemID}" class="bx--checkbox-label"></label>
                         </div>
                     </div>
                 </div>`
@@ -254,7 +274,7 @@ const addItemToMyShoppingList = (itemID, item) => {
         <div class="bx--structured-list-td">
         </div>
     </div>`
-    $("#myShoppingList").empty().append(domString)
+    $("#myShoppingList").append(domString)
 }
 
 const addToFriendShoppingList = (friendEmail, itemID, item) => {
@@ -288,7 +308,7 @@ const addToFriendShoppingList = (friendEmail, itemID, item) => {
             </div>`
 
 
-    $(`div[friendList="${friendEmail}"]`).empty().append(itemString)
+    $(`div[friendList="${friendEmail}"]`).append(itemString)
     setListeners()
 }
 

@@ -127,7 +127,8 @@ img {
     /* display: block; */
 }
 
-#addItemModal {
+#addItemModal,
+#addFriendModal {
     float: right;
 }
 
