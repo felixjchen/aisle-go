@@ -36,10 +36,14 @@ $(function () {
             console.log('Callback called with data:', response);
 
             if (response) {
+                $("#account").text(email)
                 $("#loginPane").hide()
                 $("#application").show()
             }
 
         })
     })
+
+    // $("#loginPane").hide()
+    // $("#application").show()
 });
