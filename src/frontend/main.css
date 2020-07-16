@@ -2,6 +2,18 @@
     #hamburger {
         display: none;
     }
+
+    #navigation-menu-m6ibyfeacg {
+        display: none;
+    }
+}
+
+.tabcontent {
+    display: none;
+}
+
+#profile {
+    display: block;
 }
 
 #account {

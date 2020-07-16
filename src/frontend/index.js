@@ -1,33 +1,38 @@
 $(function () {
-    // console.log("ready!");
-    $('.tab').click(function () {
-        console.log($(this).attr("tab"))
-        alert("Handler for .click() called.");
-    })
+  $(".tab").click(function () {
+    $(".tabcontent").hide();
+    $("#" + $(this).attr("tab")).show();
+  });
+
+  $("#navigation-menu-m6ibyfeacg .tab").click(function () {
+    $("#hamburger").click();
+  });
 });
 
 // const socket = io("https://redsweater.azurewebsites.net/");
 const socket = io("http://0.0.0.0");
 
 socket.on("connect", () => {
-    // either with send()
-    socket.send("Hello!");
+  // either with send()
+  socket.send("Hello!");
 
-    // or with emit() and custom event names
-    socket.emit("salutations",
-        "Hello!", {
-            mr: "john",
-        },
-        Uint8Array.from([1, 2, 3, 4])
-    );
+  // or with emit() and custom event names
+  socket.emit(
+    "salutations",
+    "Hello!",
+    {
+      mr: "john",
+    },
+    Uint8Array.from([1, 2, 3, 4])
+  );
 });
 
 // handle the event sent with socket.send()
 socket.on("message", (data) => {
-    console.log(data);
+  console.log(data);
 });
 
 // handle the event sent with socket.emit()
 socket.on("greetings", (elem1, elem2, elem3) => {
-    console.log(elem1, elem2, elem3);
+  console.log(elem1, elem2, elem3);
 });

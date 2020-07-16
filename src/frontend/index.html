@@ -63,12 +63,12 @@
 				</a>
 			</li>
 			<li>
-				<a class="tab bx--header__menu-item" tab="profile">
+				<a class="tab bx--header__menu-item" tab="friends">
 					Friends
 				</a>
 			</li>
 			<li>
-				<a class="tab bx--header__menu-item" tab="profile">
+				<a class="tab bx--header__menu-item" tab="ledger">
 					Ledger
 				</a>
 			</li>
@@ -81,7 +81,7 @@
 	<div class="bx--navigation-section">
 		<ul class="bx--navigation-items">
 			<li class="bx--navigation-item bx--navigation-item--icon">
-				<a class="bx--navigation-link">
+				<a class="tab bx--navigation-link" tab="profile">
 					<div class="bx--navigation-icon">
 						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0
 							0 32 32" aria-hidden="true">
@@ -97,7 +97,7 @@
 				</a>
 			</li>
 			<li class="bx--navigation-item bx--navigation-item--icon">
-				<a class="bx--navigation-link">
+				<a class="tab bx--navigation-link" tab="friends">
 					<div class="bx--navigation-icon">
 						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0
 							0 32 32" aria-hidden="true">
@@ -113,7 +113,7 @@
 				</a>
 			</li>
 			<li class="bx--navigation-item bx--navigation-item--icon">
-				<a class="bx--navigation-link">
+				<a class="tab bx--navigation-link" tab="ledger">
 					<div class="bx--navigation-icon">
 						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0
 							0 32 32" aria-hidden="true">
@@ -134,250 +134,264 @@
 
 <div class="bx--content bx--grid">
 
-	<div id="profile" class="tabcontent bx--row">
-		<div class="wishlist bx--col-sm-4 bx--col-lg-4 bx--col-padding">
-			<section class="bx--structured-list">
-				<div class="bx--structured-list-thead">
-					<div class="bx--structured-list-row
-						bx--structured-list-row--header-row">
-						<div class="bx--structured-list-th">Item</div>
-						<div class="bx--structured-list-th">Quantity</div>
-						<div class="bx--structured-list-th">Notes</div>
-						<div class="bx--structured-list-th">Purchased By</div>
-					</div>
-				</div>
-				<div class="bx--structured-list-tbody">
-					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td
-							bx--structured-list-content--nowrap">
-							Cheese
-						</div>
-						<div class="bx--structured-list-td">
-							200g
-						</div>
-						<div class="bx--structured-list-td">
-							Marble
-						</div>
-						<div class="bx--structured-list-td">
-							Dhruv
+	<div id="profile" class="tabcontent">
+		<div class="bx--row">
+			<div class="bx--col-sm-4 bx--col-lg-4 bx--col-padding">
+				<section class="bx--structured-list">
+					<div class="bx--structured-list-thead">
+						<div class="bx--structured-list-row
+							bx--structured-list-row--header-row">
+							<div class="bx--structured-list-th">Item</div>
+							<div class="bx--structured-list-th">Quantity</div>
+							<div class="bx--structured-list-th">Notes</div>
+							<div class="bx--structured-list-th">Purchased By</div>
 						</div>
 					</div>
-					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td
-							bx--structured-list-content--nowrap">
-							Milk
+					<div class="bx--structured-list-tbody">
+						<div class="bx--structured-list-row">
+							<div class="bx--structured-list-td
+								bx--structured-list-content--nowrap">
+								Cheese
+							</div>
+							<div class="bx--structured-list-td">
+								200g
+							</div>
+							<div class="bx--structured-list-td">
+								Marble
+							</div>
+							<div class="bx--structured-list-td">
+								Dhruv
+							</div>
 						</div>
-						<div class="bx--structured-list-td">
-							2L
-						</div>
-						<div class="bx--structured-list-td"></div>
-						<div class="bx--structured-list-td">
-							Dhruv
+						<div class="bx--structured-list-row">
+							<div class="bx--structured-list-td
+								bx--structured-list-content--nowrap">
+								Milk
+							</div>
+							<div class="bx--structured-list-td">
+								2L
+							</div>
+							<div class="bx--structured-list-td"></div>
+							<div class="bx--structured-list-td">
+								Dhruv
+							</div>
 						</div>
 					</div>
-				</div>
-			</section>
+				</section>
+			</div>
 		</div>
 	</div>
 
-	<div id="friends" class="tabcontent bx--row">
-		<div class="wishlist bx--col-sm-4 bx--col-lg-4 bx--col-padding">
-			<h4>Diya</h4>
-			<section class="bx--structured-list">
-				<div class="bx--structured-list-thead">
-					<div class="bx--structured-list-row
-						bx--structured-list-row--header-row">
-						<div class="bx--structured-list-th">Item</div>
-						<div class="bx--structured-list-th">Quantity</div>
-						<div class="bx--structured-list-th">Notes</div>
-						<div class="bx--structured-list-th">Purchased</div>
+	<div id="friends" class="tabcontent">
+		<div class="bx--row">
+			<div class="bx--col-sm-4 bx--col-lg-4 bx--col-padding">
+				<h4>Diya</h4>
+				<section class="bx--structured-list">
+					<div class="bx--structured-list-thead">
+						<div class="bx--structured-list-row
+							bx--structured-list-row--header-row">
+							<div class="bx--structured-list-th">Item</div>
+							<div class="bx--structured-list-th">Quantity</div>
+							<div class="bx--structured-list-th">Notes</div>
+							<div class="bx--structured-list-th">Purchased</div>
+						</div>
 					</div>
-				</div>
-				<div class="bx--structured-list-tbody">
-					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td
-							bx--structured-list-content--nowrap">
-							Cheese
+					<div class="bx--structured-list-tbody">
+						<div class="bx--structured-list-row">
+							<div class="bx--structured-list-td
+								bx--structured-list-content--nowrap">
+								Cheese
+							</div>
+							<div class="bx--structured-list-td">
+								200g
+							</div>
+							<div class="bx--structured-list-td">
+								Marble
+							</div>
+							<div class="bx--structured-list-td">
+								<div class="bx--form-item bx--checkbox-wrapper">
+									<input id="bx--checkbox-new" class="bx--checkbox" type="checkbox"
+										value="new"
+										name="checkbox" checked />
+									<label for="bx--checkbox-new" class="bx--checkbox-label"></label>
+								</div>
+							</div>
 						</div>
-						<div class="bx--structured-list-td">
-							200g
-						</div>
-						<div class="bx--structured-list-td">
-							Marble
-						</div>
-						<div class="bx--structured-list-td">
-							<div class="bx--form-item bx--checkbox-wrapper">
-								<input id="bx--checkbox-new" class="bx--checkbox" type="checkbox"
-									value="new"
-									name="checkbox" checked />
-								<label for="bx--checkbox-new" class="bx--checkbox-label"></label>
+						<div class="bx--structured-list-row">
+							<div class="bx--structured-list-td
+								bx--structured-list-content--nowrap">
+								Milk
+							</div>
+							<div class="bx--structured-list-td">
+								2L
+							</div>
+							<div class="bx--structured-list-td"></div>
+							<div class="bx--structured-list-td">
+								<div class="bx--form-item bx--checkbox-wrapper">
+									<input id="bx--checkbox-new2" class="bx--checkbox" type="checkbox"
+										value="new"
+										name="checkbox" checked />
+									<label for="bx--checkbox-new2" class="bx--checkbox-label"></label>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td
-							bx--structured-list-content--nowrap">
-							Milk
+				</section>
+			</div>
+			<div class="bx--col-sm-4 bx--col-lg-4 bx--col-padding">
+				<h4>Dhruv</h4>
+				<section class="bx--structured-list">
+					<div class="bx--structured-list-thead">
+						<div class="bx--structured-list-row
+							bx--structured-list-row--header-row">
+							<div class="bx--structured-list-th">Item</div>
+							<div class="bx--structured-list-th">Quantity</div>
+							<div class="bx--structured-list-th">Notes</div>
+							<div class="bx--structured-list-th">Purchased</div>
 						</div>
-						<div class="bx--structured-list-td">
-							2L
+					</div>
+					<div class="bx--structured-list-tbody">
+						<div class="bx--structured-list-row">
+							<div class="bx--structured-list-td
+								bx--structured-list-content--nowrap">
+								Cheese
+							</div>
+							<div class="bx--structured-list-td">
+								200g
+							</div>
+							<div class="bx--structured-list-td">
+								Marble
+							</div>
+							<div class="bx--structured-list-td">
+								<div class="bx--form-item bx--checkbox-wrapper">
+									<input id="bx--checkbox-new4" class="bx--checkbox" type="checkbox"
+										value="new"
+										name="checkbox" checked />
+									<label for="bx--checkbox-new4" class="bx--checkbox-label"></label>
+								</div>
+							</div>
 						</div>
-						<div class="bx--structured-list-td"></div>
-						<div class="bx--structured-list-td">
-							<div class="bx--form-item bx--checkbox-wrapper">
-								<input id="bx--checkbox-new2" class="bx--checkbox" type="checkbox"
-									value="new"
-									name="checkbox" checked />
-								<label for="bx--checkbox-new2" class="bx--checkbox-label"></label>
+						<div class="bx--structured-list-row">
+							<div class="bx--structured-list-td
+								bx--structured-list-content--nowrap">
+								Milk
+							</div>
+							<div class="bx--structured-list-td">
+								2L
+							</div>
+							<div class="bx--structured-list-td"></div>
+							<div class="bx--structured-list-td">
+								<div class="bx--form-item bx--checkbox-wrapper">
+									<input id="bx--checkbox-new3" class="bx--checkbox" type="checkbox"
+										value="new"
+										name="checkbox" checked />
+									<label for="bx--checkbox-new3" class="bx--checkbox-label"></label>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</section>
+				</section>
+			</div>
+			<div class="bx--col-sm-4 bx--col-lg-4 bx--col-padding">
+				<h4>Harrison</h4>
+				<section class="bx--structured-list">
+					<div class="bx--structured-list-thead">
+						<div class="bx--structured-list-row
+							bx--structured-list-row--header-row">
+							<div class="bx--structured-list-th">Item</div>
+							<div class="bx--structured-list-th">Quantity</div>
+							<div class="bx--structured-list-th">Notes</div>
+							<div class="bx--structured-list-th">Purchased</div>
+						</div>
+					</div>
+					<div class="bx--structured-list-tbody">
+						<div class="bx--structured-list-row">
+							<div class="bx--structured-list-td
+								bx--structured-list-content--nowrap">
+								Cheese
+							</div>
+							<div class="bx--structured-list-td">
+								200g
+							</div>
+							<div class="bx--structured-list-td">
+								Marble
+							</div>
+							<div class="bx--structured-list-td">
+								<div class="bx--form-item bx--checkbox-wrapper">
+									<input id="bx--checkbox-new6" class="bx--checkbox" type="checkbox"
+										value="new"
+										name="checkbox" checked />
+									<label for="bx--checkbox-new6" class="bx--checkbox-label"></label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="bx--col-sm-4 bx--col-lg-4 bx--col-padding">
+				<h4>Juwon</h4>
+				<section class="bx--structured-list">
+					<div class="bx--structured-list-thead">
+						<div class="bx--structured-list-row
+							bx--structured-list-row--header-row">
+							<div class="bx--structured-list-th">Item</div>
+							<div class="bx--structured-list-th">Quantity</div>
+							<div class="bx--structured-list-th">Notes</div>
+							<div class="bx--structured-list-th">Purchased</div>
+						</div>
+					</div>
+					<div class="bx--structured-list-tbody">
+						<div class="bx--structured-list-row">
+							<div class="bx--structured-list-td
+								bx--structured-list-content--nowrap">
+								Cheese
+							</div>
+							<div class="bx--structured-list-td">
+								200g
+							</div>
+							<div class="bx--structured-list-td">
+								Marble
+							</div>
+							<div class="bx--structured-list-td">
+								<div class="bx--form-item bx--checkbox-wrapper">
+									<input id="bx--checkbox-new7" class="bx--checkbox" type="checkbox"
+										value="new"
+										name="checkbox" checked />
+									<label for="bx--checkbox-new7" class="bx--checkbox-label"></label>
+								</div>
+							</div>
+						</div>
+						<div class="bx--structured-list-row">
+							<div class="bx--structured-list-td
+								bx--structured-list-content--nowrap">
+								Milk
+							</div>
+							<div class="bx--structured-list-td">
+								2L
+							</div>
+							<div class="bx--structured-list-td"></div>
+							<div class="bx--structured-list-td">
+								<div class="bx--form-item bx--checkbox-wrapper">
+									<input id="bx--checkbox-new8" class="bx--checkbox" type="checkbox"
+										value="new"
+										name="checkbox" checked />
+									<label for="bx--checkbox-new8" class="bx--checkbox-label"></label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
 		</div>
-		<div class="wishlist bx--col-sm-4 bx--col-lg-4 bx--col-padding">
-			<h4>Dhruv</h4>
-			<section class="bx--structured-list">
-				<div class="bx--structured-list-thead">
-					<div class="bx--structured-list-row
-						bx--structured-list-row--header-row">
-						<div class="bx--structured-list-th">Item</div>
-						<div class="bx--structured-list-th">Quantity</div>
-						<div class="bx--structured-list-th">Notes</div>
-						<div class="bx--structured-list-th">Purchased</div>
-					</div>
-				</div>
-				<div class="bx--structured-list-tbody">
-					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td
-							bx--structured-list-content--nowrap">
-							Cheese
-						</div>
-						<div class="bx--structured-list-td">
-							200g
-						</div>
-						<div class="bx--structured-list-td">
-							Marble
-						</div>
-						<div class="bx--structured-list-td">
-							<div class="bx--form-item bx--checkbox-wrapper">
-								<input id="bx--checkbox-new4" class="bx--checkbox" type="checkbox"
-									value="new"
-									name="checkbox" checked />
-								<label for="bx--checkbox-new4" class="bx--checkbox-label"></label>
-							</div>
-						</div>
-					</div>
-					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td
-							bx--structured-list-content--nowrap">
-							Milk
-						</div>
-						<div class="bx--structured-list-td">
-							2L
-						</div>
-						<div class="bx--structured-list-td"></div>
-						<div class="bx--structured-list-td">
-							<div class="bx--form-item bx--checkbox-wrapper">
-								<input id="bx--checkbox-new3" class="bx--checkbox" type="checkbox"
-									value="new"
-									name="checkbox" checked />
-								<label for="bx--checkbox-new3" class="bx--checkbox-label"></label>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-		<div class="wishlist bx--col-sm-4 bx--col-lg-4 bx--col-padding">
-			<h4>Harrison</h4>
-			<section class="bx--structured-list">
-				<div class="bx--structured-list-thead">
-					<div class="bx--structured-list-row
-						bx--structured-list-row--header-row">
-						<div class="bx--structured-list-th">Item</div>
-						<div class="bx--structured-list-th">Quantity</div>
-						<div class="bx--structured-list-th">Notes</div>
-						<div class="bx--structured-list-th">Purchased</div>
-					</div>
-				</div>
-				<div class="bx--structured-list-tbody">
-					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td
-							bx--structured-list-content--nowrap">
-							Cheese
-						</div>
-						<div class="bx--structured-list-td">
-							200g
-						</div>
-						<div class="bx--structured-list-td">
-							Marble
-						</div>
-						<div class="bx--structured-list-td">
-							<div class="bx--form-item bx--checkbox-wrapper">
-								<input id="bx--checkbox-new6" class="bx--checkbox" type="checkbox"
-									value="new"
-									name="checkbox" checked />
-								<label for="bx--checkbox-new6" class="bx--checkbox-label"></label>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-		<div class="wishlist bx--col-sm-4 bx--col-lg-4 bx--col-padding">
-			<h4>Juwon</h4>
-			<section class="bx--structured-list">
-				<div class="bx--structured-list-thead">
-					<div class="bx--structured-list-row
-						bx--structured-list-row--header-row">
-						<div class="bx--structured-list-th">Item</div>
-						<div class="bx--structured-list-th">Quantity</div>
-						<div class="bx--structured-list-th">Notes</div>
-						<div class="bx--structured-list-th">Purchased</div>
-					</div>
-				</div>
-				<div class="bx--structured-list-tbody">
-					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td
-							bx--structured-list-content--nowrap">
-							Cheese
-						</div>
-						<div class="bx--structured-list-td">
-							200g
-						</div>
-						<div class="bx--structured-list-td">
-							Marble
-						</div>
-						<div class="bx--structured-list-td">
-							<div class="bx--form-item bx--checkbox-wrapper">
-								<input id="bx--checkbox-new7" class="bx--checkbox" type="checkbox"
-									value="new"
-									name="checkbox" checked />
-								<label for="bx--checkbox-new7" class="bx--checkbox-label"></label>
-							</div>
-						</div>
-					</div>
-					<div class="bx--structured-list-row">
-						<div class="bx--structured-list-td
-							bx--structured-list-content--nowrap">
-							Milk
-						</div>
-						<div class="bx--structured-list-td">
-							2L
-						</div>
-						<div class="bx--structured-list-td"></div>
-						<div class="bx--structured-list-td">
-							<div class="bx--form-item bx--checkbox-wrapper">
-								<input id="bx--checkbox-new8" class="bx--checkbox" type="checkbox"
-									value="new"
-									name="checkbox" checked />
-								<label for="bx--checkbox-new8" class="bx--checkbox-label"></label>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+	</div>
+
+
+	<div id="ledger" class="tabcontent">
+		<div class="bx--row">
+			ledger content
+			<div class="bx--col-sm-4 bx--col-lg-4 bx--col-padding">
+
+			</div>
 		</div>
 	</div>
 </div>
