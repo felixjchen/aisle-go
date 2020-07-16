@@ -5,8 +5,13 @@ var user = {}
 var friends = {}
 
 socket.on("connect", () => {});
-socket.on("friendAddItem", (friendEmail, itemID, item) => {
+socket.on("friendNewItem", (friendEmail, itemID, item) => {
     addToFriendShoppingList(friendEmail, itemID, item)
+})
+
+socket.on("friendAddedToTheirList", (email, itemID) => {
+    // Friend added to their list, I can update my in list field
+    $("")
 })
 
 $(function () {
@@ -40,7 +45,7 @@ $(function () {
 
                 createMyShoppingList(user.shoppinglist)
                 createFriendShoppinglists(friends)
-                createAddedForFriend(friends)
+                claimForFriendAttempt(friends)
             } else {
                 alert("Bad login")
             }
@@ -73,7 +78,7 @@ const createMyShoppingList = (items) => {
         item = items[itemID]
 
         domString = domString + `
-        <div class="bx--structured-list-row" >
+        <div class="bx--structured-list-row" rowitemid = "${itemID}">
             <div class="bx--structured-list-td
                 bx--structured-list-content--nowrap">
                 ${item.name}
@@ -107,7 +112,7 @@ const createFriendShoppinglists = (friends) => {
 
             if (item.in_list == "") {
                 itemString = itemString + `
-                <div class="bx--structured-list-row" >
+                <div class="bx--structured-list-row" rowitemid = "${itemID}">
                     <div class="bx--structured-list-td
                         bx--structured-list-content--nowrap">
                         ${item.name}
@@ -122,7 +127,7 @@ const createFriendShoppinglists = (friends) => {
                         <button
                             class="bx--btn bx--btn--secondary bx--btn--icon-only
                             bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom
-                            bx--tooltip--align-center bx--btn--sm addedForFriend"
+                            bx--tooltip--align-center bx--btn--sm claim"
                             itemID= ${itemID}
                             friendEmail = ${friendEmail}>
                             <span class="bx--assistive-text">Add</span>
@@ -147,7 +152,7 @@ const createFriendShoppinglists = (friends) => {
                         <div class="bx--structured-list-th">Item</div>
                         <div class="bx--structured-list-th">Quantity</div>
                         <div class="bx--structured-list-th">Notes</div>
-                        <div class="bx--structured-list-th">Add to my List</div>
+                        <div class="bx--structured-list-th">Claim</div>
                     </div>
                 </div>
                 <div class="bx--structured-list-tbody" friendList="${friendEmail}">
@@ -161,7 +166,7 @@ const createFriendShoppinglists = (friends) => {
     }
 }
 
-const createAddedForFriend = (friends) => {
+const createClaimedForFriend = (friends) => {
     // INIT create added for friends shopping lists from DB
     for (var friendEmail in friends) {
 
@@ -196,27 +201,25 @@ const createAddedForFriend = (friends) => {
             }
         }
 
-        if (itemString != "") {
-            let domString = `
-                <div class="bx--col-sm-4 bx--col-lg-12 bx--col-padding">
-                    <h4>${friendEmail}</h4>
-                    <section class="bx--structured-list">
-                        <div class="bx--structured-list-thead">
-                            <div class="bx--structured-list-row
-                                bx--structured-list-row--header-row">
-                                <div class="bx--structured-list-th">Item</div>
-                                <div class="bx--structured-list-th">Quantity</div>
-                                <div class="bx--structured-list-th">Notes</div>
-                                <div class="bx--structured-list-th">Purchased</div>
-                            </div>
+        let domString = `
+            <div class="bx--col-sm-4 bx--col-lg-12 bx--col-padding">
+                <h4>${friendEmail}</h4>
+                <section class="bx--structured-list">
+                    <div class="bx--structured-list-thead">
+                        <div class="bx--structured-list-row
+                            bx--structured-list-row--header-row">
+                            <div class="bx--structured-list-th">Item</div>
+                            <div class="bx--structured-list-th">Quantity</div>
+                            <div class="bx--structured-list-th">Notes</div>
+                            <div class="bx--structured-list-th">Purchased</div>
                         </div>
-                        <div class="bx--structured-list-tbody">
-                            ${itemString}
-                        </div>
-                    </section>
-                </div>`
-            $("#addedForFriendList").append(domString)
-        }
+                    </div>
+                    <div class="bx--structured-list-tbody">
+                        ${itemString}
+                    </div>
+                </section>
+            </div>`
+        $("#claimedForFriendList").append(domString)
     }
 }
 
@@ -260,7 +263,7 @@ const addToFriendShoppingList = (friendEmail, itemID, item) => {
                     <button
                         class="bx--btn bx--btn--secondary bx--btn--icon-only
                         bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--bottom
-                        bx--tooltip--align-center bx--btn--sm addedForFriend"
+                        bx--tooltip--align-center bx--btn--sm claim"
                         itemID= ${itemID}
                         friendEmail = ${friendEmail}>
                         <span class="bx--assistive-text">Add</span>
@@ -280,11 +283,18 @@ const addToFriendShoppingList = (friendEmail, itemID, item) => {
 
 const setListeners = () => {
     // Add this item to my list for friend
-    $(".addedForFriend").click(function () {
+    $(".claim").click(function () {
         let friendEmail = $(this).attr("friendEmail")
         let itemID = $(this).attr("itemID")
-        socket.emit("addedForFriendAttempt", email, friendEmail, itemID, function (response) {
-            console.log("add for friend!")
+
+        socket.emit("claimForFriendAttempt", email, friendEmail, itemID, function (response) {
+            console.log("claimed for friend!", itemID)
+
         })
+
+
+        // Remove this element from my friend shopping list dom
+        $(this).closest(".bx--structured-list-row").remove()
+
     })
 }

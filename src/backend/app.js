@@ -57,7 +57,7 @@ io.on("connect", (socket) => {
     let friendSockets = getFriendSockets(socket.id)
     let myEmail = socketToEmail[socket.id]
     friendSockets.forEach(friendSocket => {
-      io.to(friendSocket).emit('friendAddItem', myEmail, itemID, item);
+      io.to(friendSocket).emit('friendNewItem', myEmail, itemID, item);
     })
 
     let r = {
@@ -69,7 +69,13 @@ io.on("connect", (socket) => {
   })
 
 
-  socket.on("addForFriendAttempt", async (email, friendEmail, itemID, callback) => {
+  socket.on("claimForFriendAttempt", async (email, friendEmail, itemID, callback) => {
+
+    // If friend is online, notify them that you took there item
+    if (friendEmail in emailToSocket) {
+      let friendSocket = emailToSocket[friendEmail]
+      io.to(friendSocket).emit('friendAddedToTheirList', email, itemID);
+    }
     callback(await addForFriend(email, friendEmail, itemID))
   })
 });
