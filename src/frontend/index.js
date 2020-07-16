@@ -34,6 +34,7 @@ $(function () {
 
                 createMyShoppingList(user.shoppinglist)
                 createFriendShoppinglists(friends)
+                createAddForFriend(friends)
             }
         })
     })
@@ -177,5 +178,64 @@ const createFriendShoppinglists = (friends) => {
                 addItemToShoppingList(item)
             })
         })
+    }
+}
+
+const createAddForFriend = (friends) => {
+
+    for (var friendEmail in friends) {
+
+        let itemString = ``
+        let items = friends[friendEmail].shoppinglist
+
+        for (var itemID in items) {
+            item = items[itemID]
+
+            if (item.in_list == email) {
+                itemString = itemString + `
+                <div class="bx--structured-list-row">
+                    <div class="bx--structured-list-td
+                        bx--structured-list-content--nowrap">
+                        ${item.name}
+                    </div>
+                    <div class="bx--structured-list-td">
+                        ${item.quantity}
+                    </div>
+                    <div class="bx--structured-list-td">
+                        ${item.notes}
+                    </div>
+                    <div class="bx--structured-list-td">
+                        <div class="bx--form-item bx--checkbox-wrapper">
+                            <input id="bx--checkbox-new2" class="bx--checkbox" type="checkbox"
+                                value="new"
+                                name="checkbox" />
+                            <label for="bx--checkbox-new2" class="bx--checkbox-label"></label>
+                        </div>
+                    </div>
+                </div>`
+            }
+        }
+
+        if (itemString != "") {
+            let domString = `
+                <div class="bx--col-sm-4 bx--col-lg-12 bx--col-padding">
+                    <h4>${friendEmail}</h4>
+                    <section class="bx--structured-list">
+                        <div class="bx--structured-list-thead">
+                            <div class="bx--structured-list-row
+                                bx--structured-list-row--header-row">
+                                <div class="bx--structured-list-th">Item</div>
+                                <div class="bx--structured-list-th">Quantity</div>
+                                <div class="bx--structured-list-th">Notes</div>
+                                <div class="bx--structured-list-th">Purchased</div>
+                            </div>
+                        </div>
+                        <div class="bx--structured-list-tbody">
+                            ${itemString}
+                        </div>
+                    </section>
+                </div>`
+            $("#addForFriendList").append(domString)
+        }
     }
 }
