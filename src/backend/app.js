@@ -78,12 +78,10 @@ io.on("connect", (socket) => {
       friends: await getFriendsProfiles(email)
     }
 
-
     // Only if add friend is succesful
     if (r.status) {
       emailToFriends[email].push(friendEmail)
       emailToFriends[friendEmail].push(email)
-
 
       //  Tell all my friends feeds
       let friendSockets = getFriendSockets(socket.id)

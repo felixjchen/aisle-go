@@ -1,0 +1,104 @@
+{
+    "_id": "users",
+    "_rev": "149-794d75ad5b16b738a80f81df707e9d14",
+    "users": {
+      "felix.chen@ibm.com": {
+        "password": "$2b$04$1GvWBzaHGNvxWQYThn7/XuOf3om.6axPt7vV0I8suvKDiXmkp1VVW",
+        "friends": [
+          "nadiya.stakhyra@ibm.com",
+          "harrison.ossias@ibm.com",
+          "juwon.adeola@ibm.com"
+        ],
+        "shoppinglist": {
+          "d909f075-24bd-4b29-8a96-77bbb6964b62": {
+            "name": "Milk",
+            "quantity": "2L",
+            "notes": "Skim",
+            "in_list": "nadiya.stakhyra@ibm.com",
+            "purchase_by": "nadiya.stakhyra@ibm.com"
+          },
+          "61ed1adf-ec3b-4580-a750-048d7234fada": {
+            "name": "Cheese",
+            "quantity": "2",
+            "notes": "Marble",
+            "in_list": "",
+            "purchase_by": ""
+          },
+          "b1945904-6ea8-435a-8b5a-1f1afa963d5a": {
+            "name": "Candy",
+            "quantity": "2",
+            "notes": "",
+            "in_list": "",
+            "purchase_by": ""
+          },
+          "71ed1adf-ec3b-4580-a750-048d7234fada": {
+            "name": "Cheese",
+            "quantity": "2",
+            "notes": "Marble",
+            "in_list": "",
+            "purchase_by": ""
+          }
+        }
+      },
+      "nadiya.stakhyra@ibm.com": {
+        "password": "$2b$04$3SiBJLyYhxm.m4gPgiDgi.9W5pHT1gg4wqAmlcKxGB/kWkxVRuk1G",
+        "friends": [
+          "felix.chen@ibm.com",
+          "harrison.ossias@ibm.com"
+        ],
+        "shoppinglist": {
+          "1cf7e74f-0c8b-40e2-867a-0abd20dd6391": {
+            "name": "Cheese",
+            "quantity": "2g",
+            "notes": "",
+            "in_list": "felix.chen@ibm.com",
+            "purchase_by": "nadiya.stakhyra@ibm.com"
+          },
+          "ea5cdd69-c51a-49f3-bc05-12cd55ea56a0": {
+            "name": "Milk",
+            "quantity": "2",
+            "notes": "",
+            "in_list": "felix.chen@ibm.com",
+            "purchase_by": ""
+          },
+          "5ae72d1b-fcc1-4470-8256-3d89e5da0f31": {
+            "name": "Cheetos",
+            "quantity": "1",
+            "notes": "",
+            "in_list": "felix.chen@ibm.com",
+            "purchase_by": ""
+          }
+        }
+      },
+      "harrison.ossias@ibm.com": {
+        "password": "$2b$04$78RxzEeg59i43xCcSVlVpO2Yaop/6t1fLRN346.rSg5tuITjiy.NK",
+        "friends": [
+          "felix.chen@ibm.com",
+          "nadiya.stakhyra@ibm.com"
+        ],
+        "shoppinglist": {}
+      },
+      "juwon.adeola@ibm.com": {
+        "password": "$2b$04$uLoQgIzM2Z3B1Ovko6QFQOs3Q4jQn3OQYCmDNAgRml3xjQecbgj4y",
+        "friends": [
+          "felix.chen@ibm.com"
+        ],
+        "shoppinglist": {
+          "a7ff6a56-b7ee-4c21-847d-6c7aced4e4df": {
+            "name": "Candy",
+            "quantity": "2",
+            "notes": "",
+            "in_list": "felix.chen@ibm.com",
+            "purchase_by": "nadiya.stakhyra@ibm.com"
+          },
+          "c694b6cb-0289-4108-8579-dc87912e3214": {
+            "name": "Candy2",
+            "quantity": "2",
+            "notes": "",
+            "in_list": "felix.chen@ibm.com",
+            "purchase_by": "nadiya.stakhyra@ibm.com"
+          }
+        }
+      }
+    }
+  }
