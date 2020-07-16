@@ -39,10 +39,12 @@ const auth = async function (email, password) {
   hash = user.password;
 
   delete user.password
+  friends = await getFriendsProfiles(email)
 
   r = {
     status: bcrypt.compareSync(password, hash),
-    user
+    user,
+    friends,
   }
   return r;
 };
@@ -97,21 +99,13 @@ const main = async function () {
   diya = "nadiya.stakhyra@ibm.com";
 
   // await addUser(felix, "a");
-  // await addUser(harrison, "b");
-  // await addUser(diya, "c");
+  // await addUser(diya, "b");
 
   // await addFriend(felix, harrison);
-  // await addFriend(felix, diya);
+  await addFriend(felix, diya);
 
   r = await getFriendsProfiles(felix);
-  console.log(r);
-
-  shoppingItem = {
-    item: "Cheese",
-    quantity: "2g",
-    notes: "marble",
-    purchased_by: "",
-  };
+  console.log(r)
 
   // await addShoppingItem(user, shoppingItem)
   // await updatePurchase(email, "e95eb31a-a6c0-45ea-8310-a8d56b5d411e", "felix")

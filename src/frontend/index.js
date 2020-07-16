@@ -2,6 +2,7 @@
 const socket = io("http://0.0.0.0");
 var email = "felix.chen@ibm.com"
 var user = {}
+var friends = {}
 
 socket.on("connect", () => {
     // either with send()
@@ -43,6 +44,9 @@ $(function () {
                 $("#application").show()
                 email = signInEmail
                 user = response.user
+                friends = response.friends
+
+                createMyShoppingList(user.shoppinglist)
             }
         })
     })
@@ -64,7 +68,33 @@ $(function () {
         })
 
     })
-
-    // $("#loginPane").hide()
-    // $("#application").show()
 });
+
+const createMyShoppingList = (items) => {
+    let domString = ``
+
+    for (var itemID in items) {
+        item = items[itemID]
+
+        domString = domString + `
+        <div class="bx--structured-list-row">
+            <div class="bx--structured-list-td
+                bx--structured-list-content--nowrap">
+                ${item.name}
+            </div>
+            <div class="bx--structured-list-td">
+                ${item.quantity}
+            </div>
+            <div class="bx--structured-list-td">
+                ${item.notes}
+            </div>
+            <div class="bx--structured-list-td">
+                ${item.in_list}
+            </div>
+            <div class="bx--structured-list-td">
+                ${item.purchase_by}
+            </div>
+        </div>`
+    }
+    $("#myShoppingList").append(domString)
+}

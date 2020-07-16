@@ -26,8 +26,10 @@ io.on("connect", (socket) => {
   })
 
   socket.on("addItemAttempt", async (email, item, callback) => {
+
     item['in_list'] = ""
     item['purchase_by'] = ""
+
     callback(await addShoppingItem(email, item))
   })
 
