@@ -206,6 +206,11 @@ const createClaimedForFriend = (friends) => {
             item = items[itemID]
 
             if (item.in_list == email) {
+                let checked = ""
+                if (item.purchase_by == email) {
+                    checked = "checked"
+                }
+
                 itemString = itemString + `
                 <div class="bx--structured-list-row" >
                     <div class="bx--structured-list-td
@@ -224,7 +229,7 @@ const createClaimedForFriend = (friends) => {
                                 value="new"
                                 name="checkbox" 
                                 purchaseitemid="${itemID}"
-                                purchasefriendemail="${friendEmail}"/>
+                                purchasefriendemail="${friendEmail}" ${checked}/>
                             <label for="bx--checkbox-${itemID}" class="bx--checkbox-label"></label>
                         </div>
                     </div>
@@ -337,7 +342,6 @@ const setListeners = () => {
         if (this.checked) {
             let itemID = $(this).attr("purchaseitemid")
             let friendEmail = $(this).attr("purchasefriendemail")
-            console.log(itemID)
             socket.emit("purchaseForFriendAttempt", email, friendEmail, itemID, function (response) {})
         }
     })

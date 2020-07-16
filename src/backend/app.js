@@ -110,9 +110,7 @@ io.on("connect", (socket) => {
   socket.on("purchaseForFriendAttempt", async (email, friendEmail, itemID, callback) => {
     console.log(email, friendEmail, itemID)
     let r = {
-      status: await updatePurchase(friendEmail, itemID, email),
-      user: await getUser(email),
-      friends: await getFriendsProfiles(email)
+      status: await updatePurchase(friendEmail, itemID, email)
     }
 
     // tell friend rerender
