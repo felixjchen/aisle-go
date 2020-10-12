@@ -3,6 +3,7 @@
 ## Summary
 Aisle Go - as in “I’ll go shopping for you” - is a web app designed to bring safety and accessibility to the population.
 - https://redsweater.netlify.app/
+Created for IBM Summer 2020 Intern hackathon
 
 ## Technology
 - IBM Cloud CouchDB
